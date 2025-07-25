@@ -30,7 +30,7 @@ interface Hotel {
   location: string;
   room_types: RoomType[];
   facilities: Facilities;
-  images?: string[]; // Added images property
+  images?: string[];
 }
 
 interface HotelsPageProps {
@@ -59,7 +59,6 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
       .then(data => setHotels(data.hotels));
   }, []);
 
-  // Close modal on Escape key
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') setSelectedHotel(null);
   }, []);
@@ -75,26 +74,31 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
     ? hotels.filter(hotel => hotel.name.toLowerCase() === filterHotelName.toLowerCase())
     : hotels;
 
-
   return (
     <div className="py-8 px-2 sm:px-4 bg-gray-50 min-h-screen">
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 text-teal-900">Our Hotels & Villas</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-        {filteredHotels.map((hotel: Hotel, idx: number) => (
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 text-teal-900">
+        Our Hotels & Villas
+      </h1>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 px-2 sm:px-4">
+        {filteredHotels.map((hotel: Hotel) => (
           <div
             key={hotel.name}
-            className="w-full max-w-xs bg-white rounded-2xl shadow-lg border border-gray-200 cursor-pointer overflow-hidden relative transition-transform duration-200 hover:scale-105 hover:shadow-2xl"
+            className="w-full bg-white rounded-2xl shadow-lg border border-gray-200 cursor-pointer overflow-hidden relative transition-transform duration-200 hover:scale-105 hover:shadow-2xl"
             onClick={() => setSelectedHotel(hotel)}
           >
             <img
               src={getRandomImage()}
               alt={hotel.name}
-              className="w-full h-44 object-cover rounded-t-2xl"
+              className="w-full h-40 sm:h-44 object-cover rounded-t-2xl"
             />
-            <div className="p-5 pb-8 relative">
-              <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-1">{hotel.name}</h2>
-              <div className="text-sm text-slate-500 mb-2 font-medium">{hotel.location || 'Goa, India'}</div>
-              {/* Price range for hotel card */}
+            <div className="p-3 sm:p-5 pb-6 sm:pb-8 relative">
+              <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-800 mb-1 line-clamp-2">
+                {hotel.name}
+              </h2>
+              <div className="text-xs sm:text-sm text-slate-500 mb-2 font-medium">
+                {hotel.location || 'Goa, India'}
+              </div>
               {hotel.room_types.length > 0 && (
                 <div className="text-teal-600 font-semibold mb-1">
                   {(() => {
@@ -111,8 +115,11 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
                 {hotel.room_types.length} Room Types &bull; {hotel.facilities.basic.slice(0, 2).join(', ')}...
               </div>
               <button
-                className="absolute bottom-3 right-3 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-md px-4 py-1.5 font-semibold text-sm shadow-md hover:from-blue-700 hover:to-cyan-500 transition"
-                onClick={e => { e.stopPropagation(); alert('We will contact you with the best price!'); }}
+                className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-md px-3 sm:px-4 py-1 sm:py-1.5 font-semibold text-xs sm:text-sm shadow-md hover:from-blue-700 hover:to-cyan-500 transition"
+                onClick={e => {
+                  e.stopPropagation();
+                  setShowContactModal(true);
+                }}
               >
                 Get Best Price
               </button>
@@ -121,165 +128,195 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
         ))}
       </div>
 
-      {/* Hotel Detail Modal */}
       {selectedHotel && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-2 sm:p-4 md:p-6 transition-all"
+          className="fixed inset-0 z-50 flex flex-col bg-slate-900/80 backdrop-blur-sm transition-all overflow-y-auto"
           onClick={() => setSelectedHotel(null)}
         >
-          <div
-            className="relative w-full max-w-7xl bg-white/98 rounded-2xl shadow-2xl border border-gray-200 p-3 sm:p-4 md:p-6 lg:p-8 overflow-y-auto max-h-[95vh] animate-fade-in"
-            onClick={e => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setSelectedHotel(null)}
-              style={{
-                position: 'absolute',
-                top: 18,
-                right: 18,
-                background: 'rgba(30,41,59,0.08)',
-                border: 'none',
-                borderRadius: '50%',
-                width: 38,
-                height: 38,
-                fontSize: 26,
-                color: '#222',
-                cursor: 'pointer',
-                boxShadow: '0 2px 8px 0 rgba(0,0,0,0.08)',
-                transition: 'background 0.2s',
-              }}
-              aria-label="Close"
-              onMouseOver={e => (e.currentTarget.style.background = '#e2e8f0')}
-              onMouseOut={e => (e.currentTarget.style.background = 'rgba(30,41,59,0.08)')}
+          <div className="sticky top-0 left-0 right-0 bg-gradient-to-b from-slate-900/90 to-slate-900/0 p-2 sm:p-4">
+            <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
+              <button
+                onClick={() => setSelectedHotel(null)}
+                className="flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white text-slate-700 rounded-lg shadow-lg transition-colors group"
+              >
+                <span className="text-xl group-hover:-translate-x-1 transition-transform">←</span>
+                <span className="font-medium hidden sm:inline">Back to Hotels & Villas</span>
+                <span className="font-medium sm:hidden">Back</span>
+              </button>
+              <button
+                onClick={() => setSelectedHotel(null)}
+                className="bg-white/90 hover:bg-white text-slate-700 rounded-full w-10 h-10 flex items-center justify-center text-2xl font-bold shadow-lg transition-colors"
+                aria-label="Close"
+              >
+                &times;
+              </button>
+            </div>
+          </div>
+
+          <div className="flex-1 flex items-start justify-center p-2 sm:p-4 md:p-6 mt-4">
+            <div
+              className="relative w-full max-w-7xl bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 sm:p-6 md:p-8 animate-fade-in"
+              onClick={e => e.stopPropagation()}
             >
-              &times;
-            </button>
-            <div style={{ flex: 1, minWidth: 220 }}>
-              <div className="mb-6">
-                <div className="w-full rounded-xl overflow-hidden">
-                  <Slider
-                    dots={true}
-                    arrows={true}
-                    infinite={true}
-                    speed={500}
-                    slidesToShow={1}
-                    slidesToScroll={1}
-                    autoplay={true}
-                    autoplaySpeed={3000}
-                    pauseOnHover={true}
-                  >
-                    {(selectedHotel.images && selectedHotel.images.length > 0
-                      ? selectedHotel.images.map((img, i) => (
-                          <div key={i}>
-                            <img
-                              src={`/images/Hotels pics/${selectedHotel.name}/${img}`}
-                              alt={`${selectedHotel.name} - ${img}`}
-                              className="w-full h-48 sm:h-64 md:h-80 object-cover rounded-xl shadow-md"
-                              onError={(e) => {
-                                // Fallback to placeholder if image fails to load
-                                (e.target as HTMLImageElement).src = getRandomImage();
-                              }}
-                            />
-                          </div>
-                        ))
-                      : placeholderImages.map((img, i) => (
-                          <div key={i}>
-                            <img
-                              src={img}
-                              alt={`${selectedHotel.name} placeholder ${i + 1}`}
-                              style={{ 
-                                width: '100%', 
-                                height: 300, 
-                                objectFit: 'cover', 
-                                borderRadius: 14, 
-                                boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)' 
-                              }}
-                            />
-                          </div>
-                        ))
-                    )}
-                  </Slider>
+              <div className="flex flex-col min-w-[220px]">
+                <div className="mb-6">
+                  <div className="w-full rounded-xl overflow-hidden shadow-lg">
+                    <Slider
+                      dots={true}
+                      arrows={true}
+                      infinite={true}
+                      speed={500}
+                      slidesToShow={1}
+                      slidesToScroll={1}
+                      autoplay={true}
+                      autoplaySpeed={3000}
+                      pauseOnHover={true}
+                    >
+                      {selectedHotel.images && selectedHotel.images.length > 0
+                        ? selectedHotel.images.map((img, i) => (
+                            <div key={i}>
+                              <img
+                                src={`/images/Hotels pics/${selectedHotel.name}/${img}`}
+                                alt={`${selectedHotel.name} - ${img}`}
+                                className="w-full h-48 sm:h-64 md:h-80 object-cover rounded-xl shadow-md"
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).src = getRandomImage();
+                                }}
+                              />
+                            </div>
+                          ))
+                        : placeholderImages.map((img, i) => (
+                            <div key={i}>
+                              <img
+                                src={img}
+                                alt={`${selectedHotel.name} placeholder ${i + 1}`}
+                                className="w-full h-48 sm:h-64 md:h-80 object-cover rounded-xl shadow-md"
+                              />
+                            </div>
+                          ))}
+                    </Slider>
+                  </div>
                 </div>
-              </div>
-              {/* Row: Left (name/location/price), Center (room types), Right (Get Best Price) below carousel */}
-              <div className="flex flex-col md:flex-row justify-center items-start gap-4 md:gap-8 lg:gap-12 mb-6 w-full">
-                {/* Left: Name, location, price */}
-                <div className="w-full md:w-1/3 flex flex-col justify-center">
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1">{selectedHotel.name}</h2>
-                  <div className="text-base sm:text-lg md:text-xl text-slate-500 mb-3 font-medium tracking-wide">{selectedHotel.location || 'Goa, India'}</div>
-                  {selectedHotel.room_types.length > 0 && (
-                    <div className="text-lg sm:text-xl md:text-2xl text-teal-600 font-bold">
-                      {(() => {
-                        const prices = selectedHotel.room_types.map(r => r.discounted_price);
-                        const min = Math.min(...prices);
-                        const max = Math.max(...prices);
-                        return min === max
-                          ? `₹${min} per night`
-                          : `From ₹${min} to ₹${max} per night`;
-                      })()}
+
+                <div className="flex flex-col md:flex-row justify-center items-start gap-6 md:gap-8 lg:gap-12 mb-6 w-full">
+                  <div className="w-full md:w-1/3 flex flex-col justify-center bg-slate-50/50 rounded-xl p-4 shadow-sm">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 mb-2">
+                      {selectedHotel.name}
+                    </h2>
+                    <div className="flex items-center gap-2 text-base sm:text-lg text-slate-600 mb-3">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span className="font-medium">{selectedHotel.location || 'Goa, India'}</span>
                     </div>
-                  )}
-                </div>
-                {/* Center: Room types */}
-                <div className="w-full md:w-1/3 flex flex-col items-center">
-                  <span className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-700 mb-3">Room Types</span>
-                  <ul className="w-full max-w-xs space-y-2">
-                    {selectedHotel.room_types.map((room, i) => (
-                      <li key={i} className="flex items-center justify-between gap-2 text-sm sm:text-base">
-                        <b className="text-blue-600 font-semibold">{room.type}</b>
-                        <div className="flex items-center gap-2">
-                          <span className={room.discounted_price < room.price ? 'line-through text-gray-400 text-xs' : 'text-gray-500'}>₹{room.price}</span>
-                          <span className="text-green-600 font-bold">₹{room.discounted_price}</span>
+                    {selectedHotel.room_types.length > 0 && (
+                      <div className="mt-auto">
+                        <div className="text-sm text-slate-600 mb-1">Starting from</div>
+                        <div className="text-2xl sm:text-3xl text-teal-600 font-bold">
+                          {(() => {
+                            const prices = selectedHotel.room_types.map(r => r.discounted_price);
+                            const min = Math.min(...prices);
+                            return `₹${min}`;
+                          })()}
+                          <span className="text-base font-medium text-slate-500 ml-1">per night</span>
                         </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                {/* Right: Get Best Price button */}
-                <div style={{ minWidth: 180, textAlign: 'right', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>
-                  <button
-                    style={{
-                      background: 'linear-gradient(90deg, #2563eb 0%, #38bdf8 100%)',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: 8,
-                      padding: '0.7rem 1.6rem',
-                      fontWeight: 600,
-                      fontSize: 19,
-                      boxShadow: '0 2px 8px 0 rgba(30,41,59,0.10)',
-                      cursor: 'pointer',
-                      letterSpacing: 0.2,
-                      transition: 'background 0.18s',
-                    }}
-                    onClick={() => setShowContactModal(true)}
-                  >
-                    Get Best Price
-                  </button>
-                </div>
-              </div>
-              {/* Facilities below */}
-              <div style={{ borderTop: '1.5px solid #e2e8f0', margin: '12px 0 18px 0' }} />
-              <span style={{ fontSize: 21, color: '#334155', fontWeight: 600, display: 'block', marginBottom: 10 }}>Facilities</span>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
-                {Object.entries(selectedHotel.facilities).map(([key, value]) => (
-                  <div key={key} style={{ marginBottom: 8, background: '#f1f5f9', borderRadius: 8, padding: '10px 14px', boxShadow: '0 1px 4px 0 rgba(0,0,0,0.03)' }}>
-                    <b style={{ textTransform: 'capitalize', fontSize: 16, color: '#475569', letterSpacing: 0.1 }}>{key.replace(/_/g, ' ')}:</b>
-                    {Array.isArray(value) ? (
-                      <ul style={{ margin: 0, paddingLeft: 18, fontSize: 16, color: '#222', marginTop: 4 }}>
-                        {(value as string[]).map((v, i) => <li key={i} style={{ marginBottom: 2 }}>{v}</li>)}
-                      </ul>
-                    ) : (
-                      <span style={{ fontSize: 16, marginLeft: 6, color: '#222' }}>{(value as { seating_capacity: string }).seating_capacity}</span>
+                      </div>
                     )}
                   </div>
-                ))}
+
+                  <div className="w-full md:w-1/3 flex flex-col">
+                    <div className="bg-slate-50/50 rounded-xl p-4 shadow-sm">
+                      <div className="flex items-center gap-2 mb-4">
+                        <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        <span className="text-lg sm:text-xl font-semibold text-slate-700">Available Room Types</span>
+                      </div>
+                      <ul className="w-full space-y-3">
+                        {selectedHotel.room_types.map((room, i) => (
+                          <li key={i} className="bg-white rounded-lg p-3 shadow-sm">
+                            <div className="flex justify-between items-start gap-4">
+                              <b className="text-blue-600 font-semibold">{room.type}</b>
+                              <div className="flex flex-col items-end">
+                                {room.discounted_price < room.price && (
+                                  <span className="line-through text-gray-400 text-xs">₹{room.price}</span>
+                                )}
+                                <span className="text-green-600 font-bold text-lg">₹{room.discounted_price}</span>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="w-full md:w-1/4 flex flex-col gap-4">
+                    <div className="bg-slate-50/50 rounded-xl p-4 shadow-sm flex flex-col items-center text-center">
+                      <button
+                        className="w-full bg-gradient-to-r from-blue-600 to-cyan-400 hover:from-blue-700 hover:to-cyan-500 text-white rounded-lg px-6 py-3 font-semibold text-lg shadow-md transition-all"
+                        onClick={() => setShowContactModal(true)}
+                      >
+                        Get Best Price
+                      </button>
+                      <p className="text-sm text-slate-600 mt-3">
+                        Contact us for special discounts and customized packages
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border-t border-gray-200 my-6" />
+
+                <div className="flex items-center gap-2 mb-6">
+                  <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                  <span className="text-xl font-semibold text-slate-700">Amenities & Facilities</span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {Object.entries(selectedHotel.facilities).map(([key, value]) => (
+                    <div key={key} className="bg-slate-50/50 rounded-xl p-4 shadow-sm">
+                      <div className="flex items-center gap-2 mb-3">
+                        <b className="capitalize text-slate-700 text-base md:text-lg font-semibold">
+                          {key.replace(/_/g, ' ')}
+                        </b>
+                      </div>
+                      {Array.isArray(value) ? (
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {(value as string[]).map((v, i) => (
+                            <li key={i} className="flex items-center gap-2 text-sm text-slate-600">
+                              <svg className="w-4 h-4 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              {v}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <div className="flex items-center gap-2 text-sm text-slate-600">
+                          <svg className="w-4 h-4 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          {(value as { seating_capacity: string }).seating_capacity}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       )}
-      {/* Contact Modal */}
-      <ContactModal open={showContactModal} onClose={() => setShowContactModal(false)} />
+
+      {showContactModal && (
+        <ContactModal 
+          open={true} 
+          onClose={() => setShowContactModal(false)} 
+        />
+      )}
     </div>
   );
 };
