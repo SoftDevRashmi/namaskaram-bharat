@@ -249,7 +249,8 @@ const ScubaWaterSportsPage: React.FC = () => {
           <div className="py-12 px-4 md:px-16">
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Featured Activities</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {activities.map((activity, idx) => (
+              {/* Render all cards except Offers Voucher and Customized Packages */}
+              {activities.filter(a => a.title !== 'Offers Voucher' && a.title !== 'Customised Packages').map((activity, idx) => (
                 <div
                   key={activity.title}
                   className="bg-white bg-opacity-90 rounded-lg shadow-lg overflow-hidden flex flex-col items-center relative group"
@@ -258,6 +259,43 @@ const ScubaWaterSportsPage: React.FC = () => {
                     src={activity.img}
                     alt={activity.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="p-4 flex flex-col items-center w-full">
+                    <h3 className="text-xl font-bold text-teal-700 mb-2 text-center">{activity.title}</h3>
+                    <div className="text-lg font-semibold text-blue-700 mb-2 text-center">
+                      {typeof activity.price === 'string'
+                        ? activity.price
+                        : <>
+                            <div>With Watersports: {activity.price.with_watersports}</div>
+                            <div>Without Watersports: {activity.price.without_watersports}</div>
+                          </>
+                      }
+                    </div>
+                    {activity.time && <div className="text-sm text-gray-600 mb-2">{activity.time}</div>}
+                    {/* More Details Button */}
+                    <button
+                      className="mt-2 mb-2 px-4 py-1 bg-teal-600 text-white rounded hover:bg-teal-700 transition text-sm"
+                      onClick={() => setModalIdx(idx)}
+                    >
+                      More Details
+                    </button>
+                    {/* Book Now Button */}
+                    <button className="bg-gradient-to-r from-teal-600 to-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-teal-700 hover:to-blue-600 transition mt-2 w-full">Book Now</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Separate grid for Offers Voucher and Customised Packages */}
+            <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto mt-8">
+              {activities.filter(a => a.title === 'Offers Voucher' || a.title === 'Customised Packages').map((activity, idx) => (
+                <div
+                  key={activity.title}
+                  className="bg-white bg-opacity-90 rounded-lg shadow-lg overflow-hidden flex flex-col items-center relative group w-full md:w-1/2"
+                >
+                  <img
+                    src={activity.img}
+                    alt={activity.title}
+                    className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="p-4 flex flex-col items-center w-full">
                     <h3 className="text-xl font-bold text-teal-700 mb-2 text-center">{activity.title}</h3>
