@@ -7,6 +7,7 @@ import SecondPage from "./SecondPage"; // Ensure this path is correct
 import ScubaWaterSportsPage from "./components/ScubaWaterSportsPage";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import ContactModal from "./components/ContactModal"; // Added import for ContactModal
 
 export interface CardType {
   id: number;
@@ -46,6 +47,7 @@ export default function HomePage() {
   const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
   const [scubaPage, setScubaPage] = useState(false);
   const router = useRouter();
+  const [showContactModal, setShowContactModal] = useState(false); // Added state for contact modal
 
   const handleHomeClick = () => {
     setSelectedCard(null);
@@ -98,10 +100,10 @@ export default function HomePage() {
               />
             ))}
           </div>
-          <SearchForm />
+          {/* Remove the <SearchForm /> component from the home page */}
           <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
             <Link href="/hotels">
-              <button style={{ padding: '1rem 2rem', fontSize: 18, borderRadius: 8, background: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}>
+              <button style={{ padding: '1rem 2rem', fontSize: 18, borderRadius: 8, background: '#14b8a6', color: '#fff', border: 'none', cursor: 'pointer' }}>
                 Explore Hotels & Villas
               </button>
             </Link>
@@ -109,7 +111,7 @@ export default function HomePage() {
           {/* Our Services Section (from SecondPage) */}
           <div className="py-12 px-4" style={{ background: 'rgba(20,184,166,0.07)', borderRadius: 18, margin: '2rem 0', boxShadow: '0 2px 12px 0 rgba(20,184,166,0.08)' }}>
             <div className="flex flex-col items-center">
-              <h3 className="text-xl text-teal-800 mt-4" style={{ fontWeight: 700 }}>Our Services</h3>
+              <h2 className="text-xl text-white text-center mt-4" style={{ fontWeight: 700 }}>Our Services</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
                 {[
                   { id: 1, title: "Hotel & Villa", img: "/images/hotel.jpg" },
@@ -137,15 +139,14 @@ export default function HomePage() {
             </div>
           </div>
           {/* Footer Section (from SecondPage) */}
-          <footer className="bg-gray-900 text-gray-300 pt-12 pb-4 px-4 mt-8 border-t border-gray-700">
+          <footer className="bg-teal-800 text-white pt-12 pb-4 px-4 mt-8 border-t border-teal-700" style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
               {/* Logo and Description */}
               <div className="flex-1 min-w-[220px] mb-8 md:mb-0">
                 <div className="flex items-center mb-4">
-                  <img src="/images/logo.jpeg" alt="Namaskaram Bharat" className="h-10 mr-3" />
-                  <span className="font-bold text-lg text-white">Namaskaram Bharat</span>
+                  <img src="/images/logo2.png" alt="Namaskaram Bharat" className="h-20 mr-3" style={{ fontWeight: 'bold', filter: 'drop-shadow(0 2px 8px #0002)' }} />
                 </div>
-                <p className="text-sm">Your gateway to unforgettable experiences in the paradise of Goa. We offer everything you need for a perfect vacation, from luxurious stays to exciting tours and reliable transportation.</p>
+                <p className="text-sm text-center">Your gateway to unforgettable experiences in the paradise of Goa. We offer everything you need for a perfect vacation, from luxurious stays to exciting tours and reliable transportation.</p>
               </div>
               {/* Quick Links and Important Links */}
               <div className="flex-[2] grid grid-cols-2 gap-8 min-w-[220px]">
@@ -163,7 +164,7 @@ export default function HomePage() {
                 <div>
                   <h4 className="font-bold text-white mb-2">Important Links</h4>
                   <ul className="space-y-1">
-                    <li><a href="#" className="hover:text-purple-400">Contact Us</a></li>
+                    <li><a href="#" className="hover:text-purple-400" onClick={() => setShowContactModal(true)}>Contact Us</a></li>
                     <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
                     <li><a href="#" className="hover:text-white">Terms & Condition</a></li>
                     <li><a href="#" className="hover:text-white">Return & Refund</a></li>
@@ -179,7 +180,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center mb-4">
                   <svg className="w-5 h-5 mr-2 text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 4v8" /></svg>
-                  <span>+91 79772 65548</span>
+                  <span>+91 8010357955 / 9022362693</span>
                 </div>
                 <div className="flex gap-3 mt-2">
                   <a href="#" className="text-gray-400 hover:text-white"><svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.47.69a4.3 4.3 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04A4.28 4.28 0 0016.11 4c-2.37 0-4.29 1.92-4.29 4.29 0 .34.04.67.11.99C7.69 9.13 4.07 7.38 1.64 4.7c-.37.64-.58 1.38-.58 2.17 0 1.5.76 2.82 1.92 3.6a4.28 4.28 0 01-1.94-.54v.05c0 2.1 1.5 3.85 3.5 4.25-.36.1-.74.16-1.13.16-.28 0-.54-.03-.8-.08.54 1.7 2.1 2.94 3.95 2.97A8.6 8.6 0 012 19.54a12.13 12.13 0 006.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.37-.01-.56A8.7 8.7 0 0024 4.59a8.48 8.48 0 01-2.54.7z" /></svg></a>
@@ -192,6 +193,8 @@ export default function HomePage() {
             <div className="border-t border-gray-700 mt-8 pt-4 text-center text-gray-400 text-sm">
               &copy; {new Date().getFullYear()} Namaskaram Bharat. All rights reserved.
             </div>
+            {/* Contact Modal for footer */}
+            <ContactModal open={showContactModal} onClose={() => setShowContactModal(false)} />
           </footer>
         </div>
       ) : (

@@ -265,7 +265,7 @@ const SecondPage: React.FC<SecondPageProps> = ({ card, onBack }) => {
         </div>
       </div>
       {/* Footer Section */}
-      <footer className="bg-gray-900 text-gray-300 pt-12 pb-4 px-4 mt-8 border-t border-gray-700">
+      <footer className="bg-teal-800 text-white pt-12 pb-4 px-4 mt-8 border-t border-teal-700">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
           {/* Logo and Description */}
           <div className="flex-1 min-w-[220px] mb-8 md:mb-0">
