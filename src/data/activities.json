@@ -1,0 +1,169 @@
+[
+  {
+    "title": "Snow Park",
+    "img": "/images/snowPark.jpg",
+    "price": "₹499",
+    "time": "10:00 AM to 06:00 PM",
+    "details": [
+      "Live music with -5°C temperature",
+      "Ice bar (chargeable drink)",
+      "Snow house",
+      "Snow game",
+      "Photography with adventure snow"
+    ],
+    "include": [
+      "Entry included",
+      "Shoot included (clothes)"
+    ],
+    "exclusion": [
+      "Extra services chargeable"
+    ],
+    "payment_policy": "100% advance payment booking",
+    "terms_conditions": "Cancellation charge 50% refundable (before 60 hrs)"
+  },
+  {
+    "title": "Boat Party with Watersports",
+    "img": "/images/boatparty.jpg",
+    "price": {
+      "with_watersports": "₹1999",
+      "without_watersports": "₹999"
+    },
+    "time": "12:00 NOON to 06:00 PM",
+    "activities": [
+      "Jet Ski (100 MTR round)",
+      "Kayaking (as per time management)",
+      "Bumper Ride (100 MTR round)",
+      "Banana Ride",
+      "Speed Boat (connect parasailing boat)",
+      "Dolphin sightseeing"
+    ],
+    "tour_detail": [
+      "Pick up start 12:00 NOON",
+      "15 KM bus journey",
+      "10 KM boat journey with live DJ",
+      "Live DJ party",
+      "Lunch",
+      "Snacks",
+      "Cold drink / 2 beer",
+      "Return journey 15 KM with AC bus",
+      "Drop to location"
+    ],
+    "include": [
+      "Pick-up drop services at Baga to Candolim Beach main road",
+      "Five water rides with safety",
+      "Snacks (complimentary)",
+      "Lunch (complimentary) (veg / non veg)"
+    ],
+    "exclusion": [
+      "Extra services chargeable"
+    ],
+    "payment_policy": "50% advance payment booking",
+    "terms_conditions": [
+      "Pick-up point: Baga to Candolim Beach main road",
+      "Cancellation charge 50% refundable (before 60 hrs)"
+    ]
+  },
+  {
+    "title": "Dolphin Show Tour",
+    "img": "/images/Dolphin.jpg",
+    "price": "₹499",
+    "time": "10:00 AM to 06:00 PM",
+    "boat_time": "1-2 hrs",
+    "details": [
+      "5-8 KM boat journey",
+      "Live dolphin show (weather dependent)",
+      "Central jail sightseeing by boat",
+      "Mansion villa sightseeing by boat",
+      "Panaji river sightseeing"
+    ],
+    "include": ["Entry included"],
+    "exclusion": ["Extra services chargeable"],
+    "payment_policy": "100% advance payment booking",
+    "terms_conditions": "Cancellation charge 50% refundable (before 60 hrs)"
+  },
+  {
+    "title": "Bungee Jumping",
+    "img": "/images/bungeejump.jpg",
+    "price": "₹3500",
+    "time": "10:00 AM to 06:00 PM",
+    "details": [
+      "60 MTR height",
+      "With professional trainer",
+      "4 pics and 1 video including",
+      "Jump certificate provided",
+      "Age 18 to 45",
+      "High sugar patients not allowed"
+    ],
+    "include": [
+      "Entry included",
+      "Photos 4",
+      "Videos 1",
+      "Jump certificate"
+    ],
+    "exclusion": ["Extra services chargeable"],
+    "payment_policy": "100% advance payment booking",
+    "terms_conditions": "Cancellation charge 50% refundable (before 60 hrs)"
+  },
+  {
+    "title": "Dudhsagar Waterfall",
+    "img": "/images/dudhsagar.png",
+    "price": "₹1700",
+    "time": "06:30 AM to 05:00 PM",
+    "tour_detail": [
+      "Pick up at 06:30 AM",
+      "75 KM bus journey",
+      "15 KM jungle jeep safari",
+      "Buffet lunch at spice plantation",
+      "Visit Old Goa Church",
+      "Swimming waterfall with life jacket",
+      "Return by jeep & AC bus",
+      "Drop to location"
+    ],
+    "include": [
+      "Pick-up drop at Baga to Candolim Beach",
+      "Lunch (complimentary) (veg / non veg)"
+    ],
+    "exclusion": ["Extra services chargeable"],
+    "payment_policy": "50% advance payment booking",
+    "terms_conditions": "Cancellation charge 50% refundable (before 60 hrs)"
+  },
+  {
+    "title": "North Goa Tour",
+    "img": "/images/NorthGoa.jpeg",
+    "price": "₹499 per person",
+    "time": "10:00 AM to 07:00 PM",
+    "transport": "AC bus (40 seater)",
+    "sightseeing": [
+      "Central Jail",
+      "Fort Aguada",
+      "Sinquirim Beach",
+      "Saligaon Church",
+      "Chapora Fort",
+      "Baga Beach Sunset",
+      "Snow Park"
+    ],
+    "include": ["Transport", "Parking"],
+    "exclusion": ["Entry fees", "Lunch"],
+    "payment_policy": "Full payment at booking",
+    "terms_conditions": "Cancellation charge 50% refundable (before 60 hrs)"
+  },
+  {
+    "title": "South Goa Tour",
+    "img": "/images/southgoa.png",
+    "price": "₹499 per person",
+    "time": "10:00 AM to 07:00 PM",
+    "transport": "AC bus (40 seater)",
+    "sightseeing": [
+      "Mangeshi Temple",
+      "Old Goa Church",
+      "St. Augustine Church",
+      "Miramar Beach",
+      "Panaji",
+      "Sunset Cruise (excluding)"
+    ],
+    "include": ["Transport", "Parking"],
+    "exclusion": ["Entry fees", "Lunch"],
+    "payment_policy": "Full payment at booking",
+    "terms_conditions": "Cancellation charge 50% refundable (before 60 hrs)"
+  }
+] 

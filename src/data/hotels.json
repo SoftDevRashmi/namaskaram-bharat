@@ -1,0 +1,273 @@
+{
+  "hotels": [
+    {
+      "name": "Japs Villa",
+      "location": "",
+      "room_types": [
+        {
+          "type": "1BHK",
+          "price": 3500,
+          "discounted_price": 2499
+        },
+        {
+          "type": "2BHK",
+          "price": 5000,
+          "discounted_price": 3799
+        },
+        {
+          "type": "3BHK",
+          "price": 6000,
+          "discounted_price": 4999
+        }
+      ],
+      "facilities": {
+        "basic": [
+          "Private Swimming Pool",
+          "Housekeeping",
+          "Free Wi-Fi",
+          "Parking",
+          "Power Backup",
+          "Air Conditioning"
+        ],
+        "general_services": [
+          "Luggage Assistance",
+          "Concierge"
+        ],
+        "kitchen": [
+          "Stove/Induction",
+          "Refrigerator",
+          "Utensils"
+        ],
+        "dining_area": {
+          "seating_capacity": "1-4 Seater"
+        },
+        "room": [
+          "Queen size bed",
+          "Blanket",
+          "AC",
+          "Cupboard"
+        ],
+        "bathroom": [
+          "Luggage storage",
+          "Hot & Cold Water",
+          "Toiletries",
+          "Closet",
+          "Dental Kit",
+          "Geyser/ Water heater",
+          "Western Toilet Seat"
+        ],
+        "food_and_drinks": [
+          "Restaurant (Outside)"
+        ],
+        "safety_and_security": [
+          "Fire Extinguishers"
+        ],
+        "caretaker_responsibilities": [
+          "Cleaning kitchen/utensils",
+          "Cleaning property",
+          "Gardening"
+        ]
+      }
+    },
+    {
+      "name": "The Goa Courtiyard",
+      "location": "",
+      "room_types": [
+        {
+          "type": "Deluxe",
+          "price": 3000,
+          "discounted_price": 2000
+        },
+        {
+          "type": "Super Deluxe",
+          "price": 4000,
+          "discounted_price": 2500
+        }
+      ],
+      "facilities": {
+        "basic": [
+          "Swimming Pool",
+          "Housekeeping",
+          "Free Wi-Fi",
+          "Parking",
+          "Power Backup",
+          "Air Conditioning",
+          "Common setting area"
+        ],
+        "general_services": [
+          "Luggage Assistance",
+          "Concierge"
+        ],
+        "kitchen": [
+          "Stove/Induction",
+          "Refrigerator",
+          "Utensils"
+        ],
+        "dining_area": {
+          "seating_capacity": "2-4 Seater"
+        },
+        "room": [
+          "Queen size bed",
+          "Blanket",
+          "AC",
+          "Cupboard",
+          "Table",
+          "Chair"
+        ],
+        "bathroom": [
+          "Luggage storage",
+          "Hot & Cold Water",
+          "Toiletries",
+          "Closet",
+          "Dental Kit",
+          "Geyser/ Water heater",
+          "Western Toilet Seat"
+        ],
+        "food_and_drinks": [
+          "Restaurant"
+        ],
+        "safety_and_security": [
+          "Fire Extinguishers"
+        ],
+        "caretaker_responsibilities": [
+          "Cleaning kitchen/utensils",
+          "Cleaning property",
+          "Gardening"
+        ]
+      }
+    },
+    {
+      "name": "Casita Villa",
+      "location": "",
+      "room_types": [
+        {
+          "type": "1 RK with kitchen",
+          "price": 3000,
+          "discounted_price": 2200
+        },
+        {
+          "type": "1 RK without kitchen",
+          "price": 2500,
+          "discounted_price": 1800
+        },
+        {
+          "type": "3 BHK",
+          "price": 12000,
+          "discounted_price": 10000
+        }
+      ],
+      "facilities": {
+        "basic": [
+          "Swimming Pool",
+          "Housekeeping",
+          "Free Wi-Fi",
+          "Parking",
+          "Power Backup",
+          "Air Conditioning",
+          "Common setting area"
+        ],
+        "general_services": [
+          "Luggage Assistance",
+          "Concierge"
+        ],
+        "kitchen": [
+          "Stove/Induction",
+          "Refrigerator",
+          "Utensils"
+        ],
+        "dining_area": {
+          "seating_capacity": "8-10 Seater"
+        },
+        "room": [
+          "Queen size bed",
+          "Blanket",
+          "AC",
+          "Cupboard"
+        ],
+        "bathroom": [
+          "Luggage storage",
+          "Hot & Cold Water",
+          "Toiletries",
+          "Closet",
+          "Dental Kit",
+          "Geyser/ Water heater",
+          "Western Toilet Seat"
+        ],
+        "food_and_drinks": [
+          "Restaurant (Outsource)"
+        ],
+        "safety_and_security": [
+          "Fire Extinguishers"
+        ],
+        "caretaker_responsibilities": [
+          "Cleaning kitchen/utensils",
+          "Cleaning property",
+          "Gardening"
+        ]
+      }
+    },
+    {
+      "name": "Hitai Beach Villa",
+      "location": "",
+      "room_types": [
+        {
+          "type": "7 BHK",
+          "price": 40000,
+          "discounted_price": 35000
+        }
+      ],
+      "facilities": {
+        "basic": [
+          "Private Swimming Pool",
+          "Housekeeping",
+          "Free Wi-Fi",
+          "Parking",
+          "Power Backup",
+          "Air Conditioning",
+          "Private Bar",
+          "Common setting area"
+        ],
+        "general_services": [
+          "Luggage Assistance",
+          "Concierge"
+        ],
+        "kitchen": [
+          "Stove/Induction",
+          "Refrigerator",
+          "Utensils"
+        ],
+        "dining_area": {
+          "seating_capacity": "8-10 Seater"
+        },
+        "room": [
+          "Queen size bed",
+          "Blanket",
+          "AC",
+          "Cupboard",
+          "Sofa",
+          "Table"
+        ],
+        "bathroom": [
+          "Luggage storage",
+          "Hot & Cold Water",
+          "Toiletries",
+          "Closet",
+          "Dental Kit",
+          "Geyser/ Water heater",
+          "Western Toilet Seat"
+        ],
+        "food_and_drinks": [
+          "Restaurant"
+        ],
+        "safety_and_security": [
+          "Fire Extinguishers"
+        ],
+        "caretaker_responsibilities": [
+          "Cleaning kitchen/utensils",
+          "Cleaning property",
+          "Gardening"
+        ]
+      }
+    }
+  ]
+} 
