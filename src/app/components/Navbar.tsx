@@ -13,7 +13,11 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
         <div className="flex justify-between items-center">
           <div className="flex flex-shrink items-center cursor-pointer max-w-[75%]" onClick={() => router.push('/')}>
             <img src="/images/logo2.png" alt="Logo" className="h-12 sm:h-16 md:h-20 p-2 mr-2 flex-shrink-0" />
-            <span className="text-lg sm:text-xl md:text-3xl font-bold text-white whitespace-normal leading-tight">Namaskaram Bharat</span>
+            <span className="font-extrabold whitespace-normal leading-tight" style={{ fontSize: '2.5rem', letterSpacing: '0.04em' }}>
+              <span style={{ color: '#FF9800' }}>नमस्कारम </span>
+              <span style={{ color: '#0A2342' }}>Bharat</span>
+            </span>
+
           </div>
 
           {/* Mobile menu button */}
@@ -90,51 +94,62 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
         {/* Mobile menu */}
         {isMenuOpen && (
           <div className="md:hidden mt-4 border-t border-teal-700 pt-4">
-            <div className="flex flex-col space-y-3">
-              <button
-                onClick={() => {
-                  router.push('/');
-                  if (onHomeClick) onHomeClick();
-                  setIsMenuOpen(false);
-                }}
-                className="text-lg text-white hover:text-gray-300 focus:outline-none transition-colors duration-200"
-              >
-                Home
-              </button>
-              <a href="#" className="text-lg text-white hover:text-gray-300 transition-colors duration-200">About</a>
-              <button
-                className="text-lg text-white hover:text-gray-300 focus:outline-none text-left transition-colors duration-200"
-                onClick={() => setShowDropdown(!showDropdown)}
-              >
-                Services {showDropdown ? '▼' : '▶'}
-              </button>
-              {showDropdown && (
-                <div className="pl-4 flex flex-col space-y-2">
-                  {[
-                    { label: 'Hotel & Villa', route: '/hotels' },
-                    { label: 'packages', route: '/' },
-                    { label: 'Water World', route: '/scuba' },
-                    { label: 'Moped Rental', route: '/' },
-                    { label: 'Party & Events', route: '/' },
-                    { label: 'Luxury Villas', route: '/hotels' },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      onClick={() => {
-                        router.push(item.route);
-                        setShowDropdown(false);
-                        setIsMenuOpen(false);
-                      }}
-                      className="text-gray-300 text-base hover:text-white cursor-pointer transition-colors duration-200"
-                    >
-                      {item.label}
-                    </div>
-                  ))}
-                </div>
-              )}
-              <a href="#" className="text-lg text-white hover:text-gray-300 transition-colors duration-200">Blog</a>
-              <a href="#" className="text-lg text-white hover:text-gray-300 transition-colors duration-200">Contact</a>
+            <div className="rounded-3xl bg-gradient-to-br from-teal-200 via-teal to-blue-100 shadow-2xl px-4 py-6 mx-2 border border-teal-100">
+              <div className="mb-4 text-center">
+                <span className="text-xl font-bold text-teal-700 tracking-wide">Menu</span>
+              </div>
+              <div className="flex gap-4 overflow-x-auto pb-2 hide-scrollbar">
+                {[
+                  { label: 'Home', route: '/', icon: '🏠' },
+                  { label: 'About', route: '#', icon: 'ℹ️' },
+                  { label: 'Blog', route: '#', icon: '📝' },
+                  { label: 'Contact', route: '#', icon: '📞' },
+                ].map((item) => (
+                  <button
+                    key={item.label}
+                    onClick={() => {
+                      router.push(item.route);
+                      if (item.label === 'Home' && onHomeClick) onHomeClick();
+                      setIsMenuOpen(false);
+                    }}
+                    className="min-w-[120px] rounded-2xl bg-white border border-teal-200 text-teal-800 font-bold shadow-md py-4 px-2 text-base flex flex-col items-center gap-2 hover:bg-teal-100 active:scale-95 transition-all duration-200"
+                    style={{ fontFamily: 'Poppins, sans-serif' }}
+                  >
+                    <span style={{ fontSize: '2rem' }}>{item.icon}</span>
+                    <span>{item.label}</span>
+                  </button>
+                ))}
+              </div>
+              <div className="mt-6 mb-2 text-left">
+                <span className="text-lg font-semibold text-teal-700 tracking-wide">Popular Services</span>
+              </div>
+              <div className="flex gap-4 overflow-x-auto pb-2 hide-scrollbar">
+                {[
+                  { label: 'Hotel & Villa', route: '/hotels', icon: '🏨', img: '/images/hotel.jpg' },
+                  { label: 'packages', route: '/', icon: '🎁', img: '/images/packages.jpg' },
+                  { label: 'Water World', route: '/scuba', icon: '🌊', img: '/images/waterworld.jpg' },
+                  { label: 'Moped Rental', route: '/', icon: '🛵', img: '/images/rentals.jpg' },
+                  { label: 'Party & Events', route: '/', icon: '🎉', img: '/images/party.jpg' },
+                  { label: 'Luxury Villas', route: '/hotels', icon: '🏡', img: '/images/villa.jpg' },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    onClick={() => {
+                      router.push(item.route);
+                      setShowDropdown(false);
+                      setIsMenuOpen(false);
+                    }}
+                    className="min-w-[160px] rounded-2xl bg-white border border-teal-200 text-teal-900 font-semibold py-2 px-2 flex flex-col items-center gap-2 shadow hover:bg-teal-100 active:scale-95 cursor-pointer transition-all duration-200"
+                    style={{ fontFamily: 'Poppins, sans-serif' }}
+                  >
+                    <img src={item.img} alt={item.label} className="w-full h-20 object-cover rounded-xl mb-1 shadow" />
+                    <span style={{ fontSize: '1.4rem' }}>{item.icon}</span>
+                    <span className="text-sm font-bold text-center">{item.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
+            <style>{`.hide-scrollbar::-webkit-scrollbar{display:none}`}</style>
           </div>
         )}
       </div>
