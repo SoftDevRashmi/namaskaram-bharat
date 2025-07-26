@@ -8,7 +8,7 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-teal-800 shadow-md p-4">
+    <nav className="bg-teal-800 shadow-md p-4 overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center">
           <div className="flex flex-shrink items-center cursor-pointer max-w-[75%]" onClick={() => router.push('/')}>

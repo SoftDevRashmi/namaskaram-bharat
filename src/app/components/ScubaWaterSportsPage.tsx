@@ -286,11 +286,11 @@ const ScubaWaterSportsPage: React.FC = () => {
               ))}
             </div>
             {/* Separate grid for Offers Voucher and Customised Packages */}
-            <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto mt-8">
+            <div className="flex flex-col gap-8 w-full mt-8">
               {activities.filter(a => a.title === 'Offers Voucher' || a.title === 'Customised Packages').map((activity, idx) => (
                 <div
                   key={activity.title}
-                  className="bg-white bg-opacity-90 rounded-lg shadow-lg overflow-hidden flex flex-col items-center relative group w-full md:w-1/2"
+                  className="bg-white bg-opacity-90 rounded-lg shadow-lg overflow-hidden flex flex-col items-center relative group w-full"
                 >
                   <img
                     src={activity.img}

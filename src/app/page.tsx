@@ -91,7 +91,7 @@ export default function HomePage() {
               />
             ))}
           </div>
-          <div className="flex justify-center gap-6 mt-6">
+        <div className="flex flex-col w-full items-center gap-6 mt-6 md:flex-row md:justify-center">
             {cards.slice(3).map((card) => (
               <Card
                 key={card.id}
@@ -99,7 +99,7 @@ export default function HomePage() {
                 onClick={() => setSelectedCard(card)}
               />
             ))}
-          </div>
+        </div>
           {/* Remove the <SearchForm /> component from the home page */}
           <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
             <Link href="/hotels">
@@ -145,6 +145,10 @@ export default function HomePage() {
               <div className="flex-1 min-w-[220px] mb-8 md:mb-0">
                 <div className="flex items-center mb-4">
                   <img src="/images/logo2.png" alt="Namaskaram Bharat" className="h-20 mr-3" style={{ fontWeight: 'bold', filter: 'drop-shadow(0 2px 8px #0002)' }} />
+                  <span className="text-2xl font-bold ml-2">
+                    <span className="text-orange-400">नमस्कारम </span>
+                    <span className="text-blue-900">Bharat</span>
+                  </span>
                 </div>
                 <p className="text-sm text-center">Your gateway to unforgettable experiences in the paradise of Goa. We offer everything you need for a perfect vacation, from luxurious stays to exciting tours and reliable transportation.</p>
               </div>
