@@ -290,7 +290,7 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
                     ];
                   } else if (selectedHotel.name === 'Japs Villa') {
                     modalImages = [
-                      '/images/Hotels pics/Japs Villa/Japs Villa 1BHK bedroom1.jpeg',
+                      '/images/Hotels pics/Japs Villa/Japs Villa 1BHK bedroom3.jpeg',
                       '/images/Hotels pics/Japs Villa/Japs Villa 1BHK bedroom2.jpeg',
                       '/images/Hotels pics/Japs Villa/Japs Villa 1BHK seating area.jpeg',
                       '/images/Hotels pics/Japs Villa/Japs Villa 2BHK bedroom1.jpeg',
