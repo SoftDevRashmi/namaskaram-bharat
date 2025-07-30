@@ -69,27 +69,11 @@
         ]
       },
       "images": [
-        "Japs Villa 3BHK bathroom.jpeg",
-        "Japs Villa 2BHK bathroom.jpeg",
-        "Japs Villa 1BHK swimming pool.jpeg",
-        "Japs Villa 1BHK bathroom.jpeg",
-        "Japs Villa 1BHK Kitchen.jpeg",
-        "Japs Villa 1BHK bedroom2.jpeg",
-        "Japs Villa 3BHK kitchen.jpeg",
-        "Japs Villa 3BHK bedroom3.jpeg",
-        "Japs Villa 3BHK bedroom2.jpeg",
-        "Japs Villa 3BHK seating area2.jpeg",
-        "Japs Villa 3BHK seating area.jpeg",
-        "Japs Villa 1BHK bedroom1.jpeg",
-        "Japs Villa 3BHK bedroom1.jpeg",
-        "Japs Villa 2BHK swimming pool.jpeg",
-        "Japs Villa 3BHK swimming pool.jpeg",
-        "Japs Villa 1BHK seating area.jpeg",
-        "Japs Villa 2BHK common room.jpeg",
-        "Japs Villa 2BHK seating area.jpeg",
-        "Japs Villa 2BHK bedroom1.jpeg",
-        "Japs Villa 2BHK bedroom2.jpeg",
-        "Japs Villa 2BHK Dinning area.jpeg"
+        "japsFrontdoor.jpeg.jpeg",
+        "japsBedroom.jpeg.jpeg",
+        "japsBedroom2.jpeg.jpeg",
+        "japsPrtyHall.jpeg.jpeg",
+        "Japs Villa 3BHK swimming pool.jpeg"
       ]
     },
     {
@@ -167,76 +151,6 @@
         "The Goa Coutiyard backyard.jpeg",
         "The Goa Coutiyard swimming pool.jpeg"
       ]
-    },
-    {
-      "name": "Casita Villa",
-      "location": "",
-      "room_types": [
-        {
-          "type": "1 RK with kitchen",
-          "price": 3000,
-          "discounted_price": 2200
-        },
-        {
-          "type": "1 RK without kitchen",
-          "price": 2500,
-          "discounted_price": 1800
-        },
-        {
-          "type": "3 BHK",
-          "price": 12000,
-          "discounted_price": 10000
-        }
-      ],
-      "facilities": {
-        "basic": [
-          "Swimming Pool",
-          "Housekeeping",
-          "Free Wi-Fi",
-          "Parking",
-          "Power Backup",
-          "Air Conditioning",
-          "Common setting area"
-        ],
-        "general_services": [
-          "Luggage Assistance",
-          "Concierge"
-        ],
-        "kitchen": [
-          "Stove/Induction",
-          "Refrigerator",
-          "Utensils"
-        ],
-        "dining_area": {
-          "seating_capacity": "8-10 Seater"
-        },
-        "room": [
-          "Queen size bed",
-          "Blanket",
-          "AC",
-          "Cupboard"
-        ],
-        "bathroom": [
-          "Luggage storage",
-          "Hot & Cold Water",
-          "Toiletries",
-          "Closet",
-          "Dental Kit",
-          "Geyser/ Water heater",
-          "Western Toilet Seat"
-        ],
-        "food_and_drinks": [
-          "Restaurant (Outsource)"
-        ],
-        "safety_and_security": [
-          "Fire Extinguishers"
-        ],
-        "caretaker_responsibilities": [
-          "Cleaning kitchen/utensils",
-          "Cleaning property",
-          "Gardening"
-        ]
-      }
     },
     {
       "name": "Hitai Beach Villa",

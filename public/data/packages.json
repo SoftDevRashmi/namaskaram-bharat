@@ -1,0 +1,213 @@
+{
+  "packages": [
+    {
+      "name": "Solo Goa Package",
+      "price": 15000,
+      "duration": "3 Nights 4 Days",
+      "inclusions": [
+        "Pick up & drop services (Station, Bus Stand)",
+        "North Goa sightseeing (AC Bus / Activa)",
+        "Stay in hotel guest house / budget property",
+        "South Goa sightseeing (AC Bus / Activa)",
+        "CP Food Plan (Breakfast)",
+        "Adventure boat party with watersports"
+      ],
+      "itinerary": {
+        "day1": {
+          "activities": [
+            "Pick up and check-in at 12:00 PM",
+            "Adventure boat party with watersports",
+            "Activa provided for nightlife"
+          ],
+          "boat_party_includes": [
+            "Pick up and drop",
+            "Jet-ski ride",
+            "Sightseeing of famous attractions",
+            "Banana ride",
+            "DJ music",
+            "Kayaking",
+            "2 chilled beers",
+            "Fort Aguada",
+            "Buffet lunch (Veg & Non-Veg)",
+            "Bumper ride",
+            "Soft drinks and water",
+            "Speed boat ride",
+            "Restroom and changing room on board"
+          ]
+        },
+        "day2": {
+          "tour_type": "North Goa sightseeing (AC Bus / Activa)",
+          "timing": "09:00 AM to 06:00 PM",
+          "places": [
+            "SinQurim Fort",
+            "SinQurim Beach",
+            "Baga Beach",
+            "Calangute Beach",
+            "Fort Aguada",
+            "Snow Park (Excluding)"
+          ]
+        },
+        "day3": {
+          "tour_type": "South Goa sightseeing (AC Bus)",
+          "timing": "09:00 AM to 12:30 PM",
+          "places": [
+            "Miramar Beach",
+            "Balaji Temple",
+            "St. Augustine Tower",
+            "Mangeshi Temple",
+            "Se Cathedral Church",
+            "Basilica of Bom Jesus",
+            "Boat Cruise (Extra Charges)",
+            "Dolphin Trip (Extra Charges)"
+          ]
+        },
+        "day4": {
+          "activities": ["Hotel check-out", "Drop to destination"]
+        }
+      },
+      "notes": [
+        "Pick up/drop via two-wheeler pilot vehicle",
+        "Full payment at hotel"
+      ]
+    },
+    {
+      "name": "Goa Honeymoon Package",
+      "price": 60000,
+      "duration": "4 Nights 5 Days",
+      "inclusions": [
+        "Pick up & drop service from Airport",
+        "Breakfast & Dinner",
+        "Honeymoon room decoration",
+        "Hotel stay",
+        "Activa for 3 days",
+        "Dudhsagar Waterfall",
+        "Snow Park",
+        "North & South Goa private vehicle tour",
+        "Romantic Dinner Cruise with Cake",
+        "Big Daddy Strike Casino",
+        "Calangute Watersports"
+      ],
+      "itinerary": {
+        "day1": {
+          "activities": [
+            "Pick up from Airport & Hotel check-in",
+            "Welcome drink (Juice)",
+            "Self-tour with Activa",
+            "Visit Sinquerim Beach for Sunset",
+            "Visit Snow Park",
+            "Room decorated for honeymoon",
+            "Candlelight dinner in room"
+          ]
+        },
+        "day2": {
+          "activities": [
+            "Morning breakfast",
+            "North Goa sightseeing (AC vehicle)",
+            "Dona Paula Beach",
+            "Lunch (self) at Antique Mardol (suggested)",
+            "Portuguese Fontainhas Bypass",
+            "Miramar Beach",
+            "Central Jail & Fort Aguada",
+            "Baga Beach",
+            "Ripples Dinner Cruise (08:00 PM to 12:00 Midnight)"
+          ]
+        },
+        "day3": {
+          "activities": [
+            "Dudhsagar Waterfall trip (07:00 AM to 05:00 PM)",
+            "Tapu Sunset Dinner (07:00 PM to 10:00 PM)"
+          ]
+        },
+        "day4": {
+          "activities": [
+            "Big Daddy Strike Casino (07:00 PM to 12:00 Midnight)",
+            "Unlimited drinks & food",
+            "1000/- voucher per person"
+          ]
+        },
+        "day5": {
+          "activities": [
+            "Guest personal day for shopping & other activities",
+            "Mapusa Goan Local Market",
+            "Parra Road",
+            "Saligaon Church",
+            "Sunset Point"
+          ]
+        }
+      },
+      "notes": [
+        "Historical place entry fees not included",
+        "Hotel accessory damage is chargeable",
+        "Follow Govt. and hotel rules (e.g., voice pollution, pool rules)",
+        "Extra vehicle time chargeable as per KM/hour"
+      ]
+    },
+    {
+      "name": "Girls Special Goa Tour with Photoshoot",
+      "price": 50000,
+      "duration": "4 Nights 5 Days",
+      "inclusions": [
+        "Hotel stay",
+        "Visit to Goa’s best places",
+        "Pick up & drop services",
+        "MAP food plan (Breakfast & Dinner)",
+        "Photoshoot with tour",
+        "Scuba diving with luxury yacht",
+        "Reels creation during tour",
+        "Casino entry",
+        "Club entry",
+        "Fasino bike (colorful)"
+      ],
+      "itinerary": {
+        "day1": {
+          "activities": [
+            "Pick up from Airport / Station / Bus Stand",
+            "Hotel check-in",
+            "Welcome drink",
+            "Sunset Dinner at Larive Private Island"
+          ]
+        },
+        "day2": {
+          "activities": [
+            "Early morning start",
+            "Breakfast",
+            "Dudhsagar Waterfall",
+            "Palolem Beach",
+            "Butterfly Beach",
+            "Cab de Rama",
+            "Photoshoot & Reels",
+            "Club Visit"
+          ]
+        },
+        "day3": {
+          "activities": [
+            "Breakfast",
+            "Scuba diving with luxury yacht",
+            "Watersports",
+            "Photoshoot & Reels",
+            "Casino (09:00 PM to 12:00 Midnight)"
+          ]
+        },
+        "day4": {
+          "activities": [
+            "Parra Road",
+            "Baga Street Market",
+            "Sinquerim Beach",
+            "Club Visit"
+          ]
+        },
+        "day5": {
+          "activities": [
+            "Breakfast",
+            "Drop to Airport / Station / Bus Stand"
+          ]
+        }
+      },
+      "notes": [
+        "Services customizable as per customer request",
+        "Minimum 5 persons required for this package",
+        "Solo packages available – contact head branch"
+      ]
+    }
+  ]
+}

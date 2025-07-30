@@ -7,26 +7,26 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-teal-800 shadow-md p-4">
-      <div className="w-full pr-1">
+<nav className="bg-teal-800 shadow-md pl-1 pr-4 pt-4 pb-4">
+<div className="w-full">
         <div className="flex items-center justify-between h-24 sm:h-28 md:h-32 w-full">
           {/* Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => router.push('/') }>
             <img
               src="/images/logo2.png"
               alt="Logo"
-              className="h-24 sm:h-28 md:h-32 p-2 mr-1 flex-shrink-0"
-            />
+              className="h-24 sm:h-28 md:h-32 p-1 flex-shrink-0"
+              />
           </div>
           {/* Title */}
           <div className="flex-1 text-center">
-            <span
-              className="font-extrabold whitespace-normal leading-tight"
-              style={{ fontSize: '2.5rem', letterSpacing: '0.04em' }}
-            >
-              <span style={{ color: '#FF9800' }}>नमस्कारम् </span>
-              <span style={{ color: '#0A2342' }}>Bharat</span>
-            </span>
+          <span
+  className="font-extrabold whitespace-normal leading-tight text-lg sm:text-xl md:text-3xl lg:text-[2.5rem]"
+  style={{ letterSpacing: '0.04em' }}
+>
+  <span style={{ color: '#FF9800' }}>नमस्कारम् </span>
+  <span style={{ color: '#0A2342' }}>Bharat</span>
+</span>
           </div>
           {/* Menu Button (if present) remains at right */}
           <div className="md:hidden">
@@ -90,31 +90,55 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
                 Services
               </button>
               {showDropdown && (
-                <div
-                  onMouseEnter={() => setShowDropdown(true)}
-                  onMouseLeave={() => setShowDropdown(false)}
-                  className="absolute top-full left-0 bg-white min-w-[180px] shadow-lg rounded-lg z-[9999] py-2 mt-1"
-                >
+                <>
+                  {/* Invisible bridge to prevent dropdown from closing */}
+                  <div 
+                    className="absolute top-full left-0 w-full h-2 bg-transparent"
+                    onMouseEnter={() => setShowDropdown(true)}
+                    onMouseLeave={() => setShowDropdown(false)}
+                  />
+                  <div
+                    onMouseEnter={() => setShowDropdown(true)}
+                    onMouseLeave={() => setShowDropdown(false)}
+                    className="absolute top-full left-0 bg-white/95 backdrop-blur-md min-w-[220px] shadow-2xl rounded-2xl z-[9999] py-3 mt-2 border border-teal-100/50 animate-in slide-in-from-top-2 duration-200"
+                  >
                   {[
-                    { label: 'Hotel & Villa', route: '/hotels' },
-                    { label: 'packages', route: '/' },
-                    { label: 'Water World', route: '/scuba' },
-                    { label: 'Moped Rental', route: '/' },
-                    { label: 'Party & Events', route: '/' },
-                    { label: 'Luxury Villas', route: '/hotels' },
-                  ].map((item) => (
+                    { label: 'Hotel & Villa', route: '/hotels', icon: '🏨' },
+                    { label: 'packages', route: '/', icon: '🎁' },
+                    { label: 'Water World', route: '/scuba', icon: '🌊' },
+                    { label: 'Moped Rental', route: '/', icon: '🛵' },
+                    { label: 'Party & Events', route: '/', icon: '🎉' },
+                    { label: 'Luxury Villas', route: '/hotels', icon: '🏡' },
+                  ].map((item, index) => (
                     <div
                       key={item.label}
                       onClick={() => {
                         setShowDropdown(false);
                         router.push(item.route);
                       }}
-                      className="px-4 py-2 text-gray-800 text-base hover:bg-teal-50 cursor-pointer border-b border-gray-200 last:border-b-0 transition-colors duration-200"
+                      className="px-4 py-3 text-gray-700 text-base hover:bg-gradient-to-r hover:from-teal-50 hover:to-blue-50 cursor-pointer transition-all duration-200 flex items-center gap-3 group"
+                      style={{ animationDelay: `${index * 50}ms` }}
                     >
-                      {item.label}
+                      <span className="text-lg group-hover:scale-110 transition-transform duration-200">
+                        {item.icon}
+                      </span>
+                      <span className="font-medium group-hover:text-teal-700 transition-colors duration-200">
+                        {item.label}
+                      </span>
+                      <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        <svg className="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
                     </div>
                   ))}
-                </div>
+                  <div className="px-4 py-2 mt-2 border-t border-teal-100/50">
+                    <div className="text-xs text-teal-600 font-medium text-center">
+                      Choose your adventure
+                    </div>
+                  </div>
+                  </div>
+                </>
               )}
             </div>
             <a

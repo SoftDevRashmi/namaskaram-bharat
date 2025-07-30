@@ -75,58 +75,97 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
     : hotels;
 
   return (
-    <div className="py-8 px-2 sm:px-4 bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen">
+      <div className="py-8 px-2 sm:px-4">
+        {/* Beautiful Back Button */}
+        <div className="max-w-7xl mx-auto mb-8">
+        <button
+          onClick={() => window.history.back()}
+          className="group relative inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 border border-teal-400/30 backdrop-blur-sm"
+        >
+          {/* Animated Arrow */}
+          <div className="relative">
+            <svg 
+              className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform duration-300" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+            </svg>
+            {/* Glow effect */}
+            <div className="absolute inset-0 w-5 h-5 bg-teal-300 rounded-full blur-sm opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+          </div>
+          
+          {/* Text with gradient */}
+          <span className="relative z-10 font-medium tracking-wide">
+            Back to Previous
+          </span>
+          
+          {/* Decorative elements */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          {/* Ripple effect on click */}
+          <div className="absolute inset-0 rounded-full bg-white/30 scale-0 group-active:scale-100 transition-transform duration-150"></div>
+        </button>
+      </div>
+      
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 text-teal-900">
         Our Hotels & Villas
       </h1>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 px-2 sm:px-4">
-        {filteredHotels.map((hotel: Hotel) => (
-          <div
-            key={hotel.name}
-            className="w-full bg-white rounded-2xl shadow-lg border border-gray-200 cursor-pointer overflow-hidden relative transition-transform duration-200 hover:scale-105 hover:shadow-2xl"
-            onClick={() => setSelectedHotel(hotel)}
-          >
-            <img
-              src={getRandomImage()}
-              alt={hotel.name}
-              className="w-full h-40 sm:h-44 object-cover rounded-t-2xl"
-            />
-            <div className="p-3 sm:p-5 pb-6 sm:pb-8 relative">
-              <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-800 mb-1 line-clamp-2">
-                {hotel.name}
-              </h2>
-              <div className="text-xs sm:text-sm text-slate-500 mb-2 font-medium">
-                {hotel.location || 'Goa, India'}
-              </div>
-              {hotel.room_types.length > 0 && (
-                <div className="text-teal-600 font-semibold mb-1">
-                  {(() => {
-                    const prices = hotel.room_types.map(r => r.discounted_price);
-                    const min = Math.min(...prices);
-                    const max = Math.max(...prices);
-                    return min === max
-                      ? `₹${min} per night`
-                      : `₹${min} - ₹${max} per night`;
-                  })()}
-                </div>
-              )}
-              <div className="text-xs text-gray-500 mb-2">
-                {hotel.room_types.length} Room Types &bull; {hotel.facilities.basic.slice(0, 2).join(', ')}...
-              </div>
-              <button
-                className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-md px-3 sm:px-4 py-1 sm:py-1.5 font-semibold text-xs sm:text-sm shadow-md hover:from-blue-700 hover:to-cyan-500 transition"
-                onClick={e => {
-                  e.stopPropagation();
-                  setShowContactModal(true);
-                }}
-              >
-                Get Best Price
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+      <div className="w-full px-4 max-w-7xl mx-auto">
+  <div className="flex flex-wrap justify-between gap-6">
+           {filteredHotels.map((hotel: Hotel) => (
+                     <div
+             key={hotel.name}
+             className="w-full sm:max-w-full lg:max-w-[320px] xl:max-w-[360px] mx-auto bg-white rounded-2xl shadow-lg border border-gray-200 cursor-pointer overflow-hidden relative transition-transform duration-200 hover:scale-105 hover:shadow-2xl"
+
+             onClick={() => setSelectedHotel(hotel)}
+           >
+                         <img
+               src={getRandomImage()}
+               alt={hotel.name}
+               className="w-full h-48 sm:h-52 md:h-56 object-cover rounded-t-2xl"
+             />
+                         <div className="p-3 sm:p-5 pb-8 sm:pb-10 relative flex flex-col h-full">
+                                <div className="flex-1">
+                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800 mb-2 line-clamp-2">
+                     {hotel.name}
+                   </h2>
+                   <div className="text-sm sm:text-base text-slate-500 mb-3 font-medium">
+                     {hotel.location || 'Goa, India'}
+                   </div>
+                                    {hotel.room_types.length > 0 && (
+                     <div className="text-teal-600 font-semibold text-base sm:text-lg mb-2">
+                       {(() => {
+                         const prices = hotel.room_types.map(r => r.discounted_price);
+                         const min = Math.min(...prices);
+                         const max = Math.max(...prices);
+                         return min === max
+                           ? `₹${min} per night`
+                           : `₹${min} - ₹${max} per night`;
+                       })()}
+                     </div>
+                   )}
+                   <div className="text-sm text-gray-500 mb-4">
+                     {hotel.room_types.length} Room Types &bull; {hotel.facilities.basic.slice(0, 2).join(', ')}...
+                   </div>
+               </div>
+                                                            <button
+                 className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-lg px-4 sm:px-5 py-2 sm:py-2.5 font-semibold text-sm sm:text-base shadow-md hover:from-blue-700 hover:to-cyan-500 transition-all duration-200 transform hover:scale-105"
+                 onClick={e => {
+                   e.stopPropagation();
+                   setShowContactModal(true);
+                 }}
+               >
+                 Get Best Price
+               </button>
+                         </div>
+           </div>
+         ))}
+         </div>
+       </div>
 
       {selectedHotel && (
         <div
@@ -155,7 +194,7 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
 
           <div className="flex-1 flex items-start justify-center p-2 sm:p-4 md:p-6 mt-4">
             <div
-              className="relative w-full max-w-7xl bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 sm:p-6 md:p-8 animate-fade-in"
+              className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 sm:p-6 md:p-8 animate-fade-in"
               onClick={e => e.stopPropagation()}
             >
               <div className="flex flex-col min-w-[220px]">
@@ -178,7 +217,7 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
                               <img
                                 src={`/images/Hotels pics/${selectedHotel.name}/${img}`}
                                 alt={`${selectedHotel.name} - ${img}`}
-                                className="w-full h-48 sm:h-64 md:h-80 object-cover rounded-xl shadow-md"
+                                className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover rounded-xl shadow-md"
                                 onError={(e) => {
                                   (e.target as HTMLImageElement).src = getRandomImage();
                                 }}
@@ -190,7 +229,7 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
                               <img
                                 src={img}
                                 alt={`${selectedHotel.name} placeholder ${i + 1}`}
-                                className="w-full h-48 sm:h-64 md:h-80 object-cover rounded-xl shadow-md"
+                                className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover rounded-xl shadow-md"
                               />
                             </div>
                           ))}
@@ -317,6 +356,7 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
           onClose={() => setShowContactModal(false)} 
         />
       )}
+      </div>
     </div>
   );
 };
