@@ -7,13 +7,14 @@ interface CardProps {
     img: string;
   };
   onClick: () => void;
+  className?: string; // Allow custom className
 }
 
-const Card: React.FC<CardProps> = ({ card, onClick }) => {
+const Card: React.FC<CardProps> = ({ card, onClick, className }) => {
   return (
     <div
       onClick={onClick}
-      className="relative cursor-pointer border-2 border-teal-500 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl group overflow-hidden"
+      className={`relative cursor-pointer border-2 border-teal-500 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl group overflow-hidden ${className || ''}`}
       style={{ width: '250px', height: '150px' }}
     >
       <img src={card.img} alt={card.title} className="w-full h-full object-cover rounded-lg group-hover:brightness-90 transition duration-300" />
