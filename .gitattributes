@@ -1,0 +1,11 @@
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+
+# Exclude the largest files
+public/images/backgroundImages/newSecondpage.png -text
+public/images/maldives.jpg -text
+public/images/greece.jpg -text
+public/images/puneToGoa.jpeg -text
+public/images/Dolphin.jpg -text

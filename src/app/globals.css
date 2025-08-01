@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Video background optimizations */
+video {
+  /* Simple, clean rendering to prevent pixel breaking */
+  image-rendering: auto;
+  -webkit-image-rendering: auto;
+  -moz-image-rendering: auto;
+  /* Basic hardware acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  /* Prevent user interaction */
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Ensure smooth video playback */
+.hero-video {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  /* Prevent video from causing layout shifts */
+  min-height: 100vh;
+  /* Optimize for performance */
+  will-change: auto;
+  /* Smooth transitions */
+  transition: opacity 0.3s ease-in-out;
+  /* Improve video clarity */
+  filter: none;
+  -webkit-filter: none;
+  /* Ensure crisp rendering - use auto for better quality */
+  image-rendering: auto;
+  /* Force high quality rendering */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  /* Remove any blur effects */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  /* Prevent pixel blur */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hero section container - ensure no blur */
+.hero-section {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Navbar background image styling */
+nav {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
