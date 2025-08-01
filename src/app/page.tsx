@@ -18,11 +18,12 @@ export interface CardType {
 }
 
 const cards: CardType[] = [
-  { id: 1, title: "Pune to Goa", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" },
-  { id: 2, title: "Mumbai to Goa", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" },
-  { id: 3, title: "Hyderabad to Goa", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" },
-  { id: 4, title: "Offers Voucher", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" },
-  { id: 5, title: "Customised Packages", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" },
+  { id: 1, title: "Pune to Goa", img: "/images/travel1.jpg" },
+  { id: 2, title: "Mumbai to Goa", img: "/images/travel2.jpg" },
+  { id: 3, title: "Hyderabad to Goa", img: "/images/travel3.jpg" },
+  { id: 4, title: "Offers Voucher", img: "/images/travel4.jpg" },
+  { id: 5, title: "Customised Packages", img: "/images/maldives.jpg" },
+  { id: 6, title: "TEST CARD", img: "https://via.placeholder.com/200x150/teal/white?text=TEST" },
 ];
 
 export default function HomePage() {
@@ -48,7 +49,7 @@ export default function HomePage() {
       {/* Background Content - Covers entire page */}
       {backgroundType === 'image' ? (
         <img 
-          src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=1080&fit=crop"
+          src="/images/backgroundImages/bg.jpg"
           alt="Page Background"
           className="fixed inset-0 w-full h-full object-cover z-0"
         />
@@ -71,7 +72,7 @@ export default function HomePage() {
           >
             <source src="/images/backgroundImages/compressedBG.mp4" type="video/mp4" />
             <img 
-              src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=1080&fit=crop"
+              src="/images/backgroundImages/bg.jpg"
               alt="Page Background Fallback"
               className="fixed inset-0 w-full h-full object-cover"
             />
@@ -123,9 +124,9 @@ export default function HomePage() {
                 ))}
               </div>
 
-              {/* Bottom row: Always 2 cards */}
-              <div className="grid grid-cols-2 gap-4 mt-6 justify-center">
-                {cards.slice(3, 5).map((card) => (
+              {/* Bottom row: Always 3 cards */}
+              <div className="grid grid-cols-3 gap-4 mt-6 justify-center">
+                {cards.slice(3, 6).map((card) => (
                   <div key={card.id} className="flex justify-center">
                     <Card
                       card={card}
