@@ -24,6 +24,27 @@ const nextConfig: NextConfig = {
   
   // Output configuration for static export if needed
   output: 'standalone',
+  
+  // Add webpack configuration to ensure images are included
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      };
+    }
+    return config;
+  },
+  
+  // Ensure static files are copied
+  async rewrites() {
+    return [
+      {
+        source: '/images/:path*',
+        destination: '/images/:path*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
