@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 
 interface CardProps {
   card: {
@@ -17,18 +16,16 @@ const Card: React.FC<CardProps> = ({ card, onClick, className }) => {
       onClick={onClick}
       className={`relative cursor-pointer bg-white border-2 border-teal-500 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl group overflow-hidden w-[200px] h-[120px] mx-auto ${className || ''}`}
     >
-      <Image 
+      <img 
         src={card.img} 
         alt={card.title} 
-        width={200}
-        height={90}
         className="w-full h-3/4 object-cover rounded-t-lg group-hover:brightness-90 transition duration-300"
-        priority={false}
-        unoptimized={true}
         onError={(e) => {
           console.error(`Failed to load image: ${card.img}`);
-          // Fallback to a default image if needed
-          e.currentTarget.src = '/images/logo2.png';
+          console.error('Error details:', e);
+        }}
+        onLoad={() => {
+          console.log(`Successfully loaded image: ${card.img}`);
         }}
       />
       {/* White background for text area */}

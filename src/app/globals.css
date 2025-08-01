@@ -89,3 +89,31 @@ nav {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+/* Fix image flickering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Prevent layout shift for images */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Smooth image loading */
+img[loading="lazy"] {
+  transition: opacity 0.3s ease-in-out;
+}
+
+img[loading="lazy"]:not([src]) {
+  opacity: 0;
+}
+
+img[loading="lazy"][src] {
+  opacity: 1;
+}

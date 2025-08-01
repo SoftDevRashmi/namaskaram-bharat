@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import Image from 'next/image';
+
+
 import Card from "./components/Card";
 import Navbar from "./components/Navbar";
 import SecondPage from "./SecondPage";
@@ -46,16 +47,10 @@ export default function HomePage() {
     <div className="h-screen overflow-y-auto relative">
       {/* Background Content - Covers entire page */}
       {backgroundType === 'image' ? (
-        <Image 
+        <img 
           src="/images/backgroundImages/bg.jpg"
           alt="Page Background"
-          fill
           className="fixed inset-0 w-full h-full object-cover z-0"
-          priority={true}
-          unoptimized={true}
-          onError={(e) => {
-            console.error('Failed to load background image');
-          }}
         />
         ) : (
           <video
@@ -75,13 +70,10 @@ export default function HomePage() {
             }}
           >
             <source src="/images/backgroundImages/compressedBG.mp4" type="video/mp4" />
-            <Image 
+            <img 
               src="/images/backgroundImages/bg.jpg"
               alt="Page Background Fallback"
-              fill
               className="fixed inset-0 w-full h-full object-cover"
-              priority={true}
-              unoptimized={true}
             />
           </video>
         )}
@@ -218,7 +210,7 @@ export default function HomePage() {
             {/* Logo and Title - Centered */}
             <div className="flex flex-col items-center mb-3">
               <div className="flex items-center mb-1">
-                <Image src="/images/logo2.png" alt="Namaskaram Bharat" width={24} height={24} className="h-6 mr-2" unoptimized={true} />
+                <img src="/images/logo2.png" alt="Namaskaram Bharat" className="h-6 mr-2" />
                 <span className="font-bold text-base text-white">
                   <span className="text-orange-400">नमस्कारम </span>
                   <span className="text-blue-900">Bharat</span>
@@ -267,7 +259,7 @@ export default function HomePage() {
           <div className="hidden md:flex md:flex-row justify-between gap-8">
             <div className="flex-1 min-w-[220px] mb-8 lg:mb-0">
               <div className="flex flex-col sm:flex-row items-center mb-4">
-                <Image src="/images/logo2.png" alt="Namaskaram Bharat" width={80} height={80} className="h-16 sm:h-20 mr-3 mb-2 sm:mb-0" unoptimized={true} />
+                <Image src="/images/logo2.png" alt="Namaskaram Bharat" width={80} height={80} className="h-16 sm:h-20 mr-3 mb-2 sm:mb-0" priority={true} />
                 <span className="text-xl sm:text-2xl font-bold text-center sm:text-left">
                   <span className="text-orange-400">नमस्कारम </span>
                   <span className="text-blue-900">Bharat</span>

@@ -13,11 +13,13 @@ const nextConfig: NextConfig = {
   
   // Image optimization settings
   images: {
-    unoptimized: true, // Disable optimization for static images to ensure they load properly
+    unoptimized: false, // Enable optimization to prevent flickering
     domains: [],
     remotePatterns: [],
-    loader: 'default',
-    disableStaticImages: false,
+    minimumCacheTTL: 31536000, // 1 year cache
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   
   // Static asset handling
@@ -28,6 +30,21 @@ const nextConfig: NextConfig = {
   
   // Output configuration for static export if needed
   output: 'standalone',
+  
+  // Add headers for better caching
+  async headers() {
+    return [
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
