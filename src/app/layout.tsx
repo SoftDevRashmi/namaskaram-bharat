@@ -28,14 +28,14 @@ export default function RootLayout({
         {/* Preload critical video for better performance */}
         <link 
           rel="preload" 
-          href="/images/backgroundImages/HomeHreoSection.mp4" 
+          href="/images/backgroundImages/compressedBG.mp4" 
           as="video" 
           type="video/mp4"
         />
         {/* Preload fallback image */}
         <link 
           rel="preload" 
-          href="/images/backgroundImages/1.jpg" 
+          href="/images/backgroundImages/newSecondpage.png" 
           as="image"
         />
       </head>

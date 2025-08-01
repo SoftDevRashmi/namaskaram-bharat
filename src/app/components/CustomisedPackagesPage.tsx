@@ -27,7 +27,7 @@ const getPackageImage = (packageName: string) => {
     case "Goa Honeymoon Package":
       return "/images/packages/HONEYMOON.JPEG.jpeg";
     case "Girls Special Goa Tour with Photoshoot":
-      return "/images/beach.jpg"; // Using beach image for girls special tour
+      return "/images/Hotels pics/Japs Villa/Japs Villa 3BHK seating area.jpeg"; // Using Japs Villa seating area image for girls special tour
     default:
       return "/images/maldives.jpg";
   }

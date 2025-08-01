@@ -50,7 +50,7 @@ const Modal = ({ activity, onClose }: { activity: Activity, onClose: () => void 
         {/* Left side: image, price, button */}
         <div className="w-full md:w-1/2 flex flex-col items-center justify-start bg-gray-50 p-4">
           <img 
-            src={activity.img || '/images/placeholder.jpg'} 
+            src={activity.img || '/images/waterworld.jpg'} 
             alt={activity.title} 
             className="w-full max-w-md aspect-video object-cover rounded-2xl mb-6 shadow-lg" />
           {activity.price && (

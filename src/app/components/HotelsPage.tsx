@@ -39,10 +39,10 @@ interface HotelsPageProps {
 }
 
 const placeholderImages = [
-  '/images/hotel.jpg',
-  '/images/villa.jpg',
-  '/images/beach.jpg',
-  '/images/sea.jpg',
+      '/images/hotel.jpg',
+    '/images/villa.jpg',
+    '/images/Hotels pics/Japs Villa/Japs Villa 3BHK seating area.jpeg',
+    '/images/sea.jpg',
 ];
 
 function getRandomImage() {
