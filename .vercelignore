@@ -19,4 +19,5 @@ Thumbs.db
 
 # Don't ignore images and static assets
 !public/images/**
-!public/data/** 
+!public/data/**
+!public/images/Hotels pics/** 

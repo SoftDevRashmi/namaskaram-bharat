@@ -11,6 +11,8 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ card, onClick, className }) => {
+  console.log(`Card ${card.id}: Loading image from ${card.img}`);
+  
   return (
     <div
       onClick={onClick}
@@ -21,11 +23,14 @@ const Card: React.FC<CardProps> = ({ card, onClick, className }) => {
         alt={card.title} 
         className="w-full h-3/4 object-cover rounded-t-lg group-hover:brightness-90 transition duration-300"
         onError={(e) => {
-          console.error(`Failed to load image: ${card.img}`);
+          console.error(`❌ Failed to load image: ${card.img}`);
           console.error('Error details:', e);
+          // Add a visible error indicator
+          e.currentTarget.style.border = '2px solid red';
+          e.currentTarget.style.backgroundColor = '#ffebee';
         }}
         onLoad={() => {
-          console.log(`Successfully loaded image: ${card.img}`);
+          console.log(`✅ Successfully loaded image: ${card.img}`);
         }}
       />
       {/* White background for text area */}

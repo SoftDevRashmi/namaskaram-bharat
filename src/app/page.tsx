@@ -259,7 +259,16 @@ export default function HomePage() {
           <div className="hidden md:flex md:flex-row justify-between gap-8">
             <div className="flex-1 min-w-[220px] mb-8 lg:mb-0">
               <div className="flex flex-col sm:flex-row items-center mb-4">
-                <Image src="/images/logo2.png" alt="Namaskaram Bharat" width={80} height={80} className="h-16 sm:h-20 mr-3 mb-2 sm:mb-0" priority={true} />
+                <img
+                  src="/images/logo2.png"
+                  alt="Namaskaram Bharat"
+                  width={80}
+                  height={80}
+                  className="h-16 sm:h-20 mr-3 mb-2 sm:mb-0"
+                  loading="eager"
+                  decoding="async"
+                  style={{ objectFit: "contain" }}
+                />
                 <span className="text-xl sm:text-2xl font-bold text-center sm:text-left">
                   <span className="text-orange-400">नमस्कारम </span>
                   <span className="text-blue-900">Bharat</span>
