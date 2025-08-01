@@ -25,19 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preload critical video for better performance */}
-        <link 
-          rel="preload" 
-          href="/images/backgroundImages/compressedBG.mp4" 
-          as="video" 
-          type="video/mp4"
-        />
-        {/* Preload fallback image */}
-        <link 
-          rel="preload" 
-          href="/images/backgroundImages/newSecondpage.png" 
-          as="image"
-        />
+        {/* Removed problematic preload links */}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
