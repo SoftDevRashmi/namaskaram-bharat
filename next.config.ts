@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
   trailingSlash: false,
   
   // Output configuration for static export if needed
-  output: 'standalone',
+  output: 'export',
   
   // Add webpack configuration to ensure images are included
   webpack: (config, { isServer }) => {
