@@ -67,33 +67,34 @@ const SecondPage: React.FC<SecondPageProps> = ({ card, onBack }) => {
       </nav>
 
       {/* Our Services Section */}
-      <div className="py-4 px-4">
-  <div className="flex flex-col items-center">
-    <h3 className="text-2xl md:text-3xl lg:text-4xl text-white mt-0 font-bold">Our Services</h3>
 
-    {/* Centered card grid wrapper */}
-    <div className="mt-4 flex justify-center">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
-        {services.map((service) => (
-          <Card
-            key={service.id}
-            card={service}
-            className="w-[280px] h-[80px] md:w-[300px] md:h-[170px] lg:w-[320px] lg:h-[180px]"
-            onClick={() => {
-              if (service.title === 'Water World') {
-                setShowScuba(true);
-              } else if (service.title === 'Hotel & Villa') {
-                router.push('/hotels');
-              } else if (service.title === 'Luxury Villas') {
-                setShowLuxuryVilla(true);
-              }
-            }}
-          />
-        ))}
+      {/* Our Services Section */}
+      <div className="py-12 px-4">
+        <h3 className="text-3xl md:text-4xl lg:text-5xl text-black mt-8 mb-6 font-bold text-center drop-shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>Our Services</h3>
+        <div className="flex flex-col items-center">
+          {/* Centered card grid wrapper */}
+          <div className="mt-4 flex justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+              {services.map((service) => (
+                <Card
+                  key={service.id}
+                  card={service}
+                  className="w-[280px] h-[80px] md:w-[300px] md:h-[170px] lg:w-[320px] lg:h-[180px]"
+                  onClick={() => {
+                    if (service.title === 'Water World') {
+                      setShowScuba(true);
+                    } else if (service.title === 'Hotel & Villa') {
+                      router.push('/hotels');
+                    } else if (service.title === 'Luxury Villas') {
+                      setShowLuxuryVilla(true);
+                    }
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
       {/* Top Destinations Section */}
       <div className="py-12 px-4">
         <h2 className="text-3xl font-bold text-center text-white mb-8">Top destinations</h2>
@@ -346,7 +347,7 @@ const SecondPage: React.FC<SecondPageProps> = ({ card, onBack }) => {
             {/* Logo and Description */}
             <div className="flex-1 min-w-[220px] mb-8 md:mb-0">
               <div className="flex items-center mb-4">
-                <img src="/images/logo2.png" alt="Namaskaram Bharat" className="h-20 mr-3" />
+                <img src="/images/logo2.png" alt="Namaskaram Bharat" className="h-20 md:h-28 lg:h-32 mr-3" />
                 <span className="font-extrabold whitespace-normal leading-tight text-lg sm:text-xl md:text-2xl lg:text-3xl">
                   <span
                     className="italic"

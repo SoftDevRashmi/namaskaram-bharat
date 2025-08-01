@@ -22,9 +22,6 @@ const nextConfig: NextConfig = {
   // Ensure proper static file serving
   trailingSlash: false,
   
-  // Output configuration for static export if needed
-  output: 'export',
-  
   // Add webpack configuration to ensure images are included
   webpack: (config, { isServer }) => {
     if (!isServer) {
@@ -34,16 +31,6 @@ const nextConfig: NextConfig = {
       };
     }
     return config;
-  },
-  
-  // Ensure static files are copied
-  async rewrites() {
-    return [
-      {
-        source: '/images/:path*',
-        destination: '/images/:path*',
-      },
-    ];
   },
 };
 

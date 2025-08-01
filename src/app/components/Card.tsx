@@ -16,54 +16,31 @@ const Card: React.FC<CardProps> = ({ card, onClick, className }) => {
   return (
     <div
       onClick={onClick}
-      style={{
-        width: '200px',
-        height: '120px',
-        border: '2px solid teal',
-        borderRadius: '8px',
-        cursor: 'pointer',
-        backgroundColor: 'white',
-        position: 'relative',
-        overflow: 'hidden'
-      }}
+      className="w-[200px] h-[120px] md:w-[280px] md:h-[160px] border-2 border-teal rounded-lg cursor-pointer bg-white relative overflow-hidden"
     >
-      {/* Simple image with inline styles */}
+      {/* Simple image with responsive sizing */}
       <img 
         src={card.img} 
         alt={card.title} 
-        style={{
-          width: '100%',
-          height: '75%',
-          objectFit: 'cover',
-          display: 'block'
-        }}
+        className="w-full h-3/4 object-cover block"
         onError={(e) => {
           console.error(`❌ Failed to load image: ${card.img}`);
+          console.error(`Error details:`, e);
+          // Try to load a fallback image
+          e.currentTarget.src = '/images/logo2.png';
           e.currentTarget.style.border = '2px solid red';
           e.currentTarget.style.backgroundColor = '#ffebee';
         }}
         onLoad={() => {
           console.log(`✅ Successfully loaded image: ${card.img}`);
         }}
+        crossOrigin="anonymous"
+        loading="eager"
       />
       
-      {/* Text area with inline styles */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        backgroundColor: 'white',
-        textAlign: 'center',
-        padding: '2px',
-        borderBottomLeftRadius: '6px',
-        borderBottomRightRadius: '6px'
-      }}>
-        <span style={{
-          color: '#0d9488',
-          fontWeight: 'bold',
-          fontSize: '12px'
-        }}>
+      {/* Text area with responsive sizing */}
+      <div className="absolute bottom-0 left-0 right-0 bg-white text-center p-1 md:p-2 rounded-b-md">
+        <span className="text-teal-600 font-bold text-xs md:text-sm">
           {card.title}
         </span>
       </div>

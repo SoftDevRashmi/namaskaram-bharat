@@ -11,14 +11,11 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
 <div className="w-full">
         <div className="flex items-center justify-between h-16 sm:h-28 md:h-32 w-full relative">
           {/* Logo */}
-          <div className="flex items-center cursor-pointer z-10" onClick={() => {
-            router.push('/');
-            if (onHomeClick) onHomeClick();
-          }}>
+          <div className="flex items-center cursor-pointer z-10" onClick={() => router.push('/') }>
             <img
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzAwOTljYyIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TG9nbzwvdGV4dD4KPC9zdmc+"
+              src="/images/logo2.png"
               alt="Logo"
-              className="h-12 sm:h-16 md:h-20 flex-shrink-0"
+              className="h-12 sm:h-16 md:h-24 lg:h-28 flex-shrink-0"
               />
           </div>
           {/* Title */}
@@ -90,8 +87,8 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
           <div className="hidden md:flex md:items-center md:space-x-2">
             <button
               onClick={() => {
-                if (onHomeClick) onHomeClick();
                 router.push('/');
+                if (onHomeClick) onHomeClick();
               }}
               className="text-white bg-gradient-to-br from-green-300 to-blue-500 hover:bg-gradient-to-bl hover:from-green-200 hover:to-blue-400 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-full text-sm px-6 py-2.5 text-center me-2 mb-2 transition-all duration-300 shadow-lg flex items-center gap-2"
             >
@@ -228,20 +225,21 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
                   </button>
                 ))}
               </div>
-              <div className="mt-6 mb-2 text-left">
+              <div className="mt-6 mb-4 text-left">
                 <span className="text-lg font-semibold text-white tracking-wide">
                   Popular Services
                 </span>
               </div>
-              <div className="flex gap-4 overflow-x-auto pb-2 hide-scrollbar">
-                {[
-                  { label: 'Hotel & Villa', route: '/hotels', icon: '🏨', img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwMDk5Y2MiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkhvdGVsPC90ZXh0Pgo8L3N2Zz4=' },
-                  { label: 'packages', route: '/', icon: '🎁', img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwMDk5Y2MiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlBhY2thZ2VzPC90ZXh0Pgo8L3N2Zz4=' },
-                  { label: 'Water World', route: '/scuba', icon: '🌊', img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwMDk5Y2MiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPldhdGVyPC90ZXh0Pgo8L3N2Zz4=' },
-                  { label: 'Moped Rental', route: '/', icon: '🛵', img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwMDk5Y2MiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlJlbnRhbDwvdGV4dD4KPC9zdmc+' },
-                  { label: 'Party & Events', route: '/', icon: '🎉', img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwMDk5Y2MiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlBhcnR5PC90ZXh0Pgo8L3N2Zz4=' },
-                  { label: 'Luxury Villas', route: '/hotels', icon: '🏡', img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwMDk5Y2MiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlZpbGxhczwvdGV4dD4KPC9zdmc+' },
-                ].map((item) => (
+              <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
+                <div className="flex gap-4 ml-auto mr-auto">
+                  {[
+                    { label: 'Hotel & Villa', route: '/hotels', icon: '🏨', img: '/images/hotel.jpg' },
+                    { label: 'packages', route: '/', icon: '🎁', img: '/images/packages.jpg' },
+                    { label: 'Water World', route: '/scuba', icon: '🌊', img: '/images/waterworld.jpg' },
+                    { label: 'Moped Rental', route: '/', icon: '🛵', img: '/images/rentals.jpg' },
+                    { label: 'Party & Events', route: '/', icon: '🎉', img: '/images/party.jpg' },
+                    { label: 'Luxury Villas', route: '/hotels', icon: '🏡', img: '/images/villa.jpg' },
+                  ].map((item) => (
                   <div
                     key={item.label}
                     onClick={() => {
@@ -261,6 +259,7 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
                     <span className="text-sm font-bold text-center">{item.label}</span>
                   </div>
                 ))}
+                </div>
               </div>
             </div>
             <style>{`.hide-scrollbar::-webkit-scrollbar{display:none}`}</style>
