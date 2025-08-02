@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import ContactModal from './ContactModal';
 
 const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
   const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   return (
 <nav className="bg-transparent py-2 relative z-10">
@@ -182,15 +184,15 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
               </svg>
               Blog
             </a>
-            <a
-              href="#"
+            <button
+              onClick={() => setShowContactModal(true)}
               className="text-white bg-gradient-to-br from-green-300 to-blue-500 hover:bg-gradient-to-bl hover:from-green-200 hover:to-blue-400 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-full text-sm px-6 py-2.5 text-center me-2 mb-2 transition-all duration-300 shadow-lg flex items-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               Contact
-            </a>
+            </button>
           </div>
         </div>
 
@@ -203,7 +205,7 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
                   Menu
                 </span>
               </div>
-              <div className="flex gap-4 overflow-x-auto pb-2 hide-scrollbar">
+              <div className="flex gap-4 overflow-x-auto pb-2 hide-scrollbar justify-center md:justify-start">
                 {[
                   { label: 'Home', route: '/', icon: '🏠' },
                   { label: 'About', route: '#', icon: 'ℹ️' },
@@ -213,9 +215,14 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
                   <button
                     key={item.label}
                     onClick={() => {
-                      router.push(item.route);
-                      if (item.label === 'Home' && onHomeClick) onHomeClick();
-                      setIsMenuOpen(false);
+                      if (item.label === 'Contact') {
+                        setShowContactModal(true);
+                        setIsMenuOpen(false);
+                      } else {
+                        router.push(item.route);
+                        if (item.label === 'Home' && onHomeClick) onHomeClick();
+                        setIsMenuOpen(false);
+                      }
                     }}
                     className="min-w-[120px] rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold shadow-md py-4 px-2 text-base flex flex-col items-center gap-2 hover:bg-white/30 active:scale-95 transition-all duration-200"
                     style={{ fontFamily: 'Poppins, sans-serif' }}
@@ -230,16 +237,22 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
                   Popular Services
                 </span>
               </div>
-              <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
-                <div className="flex gap-4 ml-auto mr-auto">
-                  {[
-                    { label: 'Hotel & Villa', route: '/hotels', icon: '🏨', img: '/images/hotel.jpg' },
-                    { label: 'packages', route: '/', icon: '🎁', img: '/images/packages.jpg' },
-                    { label: 'Water World', route: '/scuba', icon: '🌊', img: '/images/waterworld.jpg' },
-                    { label: 'Moped Rental', route: '/', icon: '🛵', img: '/images/rentals.jpg' },
-                    { label: 'Party & Events', route: '/', icon: '🎉', img: '/images/party.jpg' },
-                    { label: 'Luxury Villas', route: '/hotels', icon: '🏡', img: '/images/villa.jpg' },
-                  ].map((item) => (
+              <div className="mt-4 flex justify-center">
+                <div className="
+                  grid 
+                  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 
+                  gap-6 justify-items-center
+                  mx-auto
+                  max-w-xs sm:max-w-2xl md:max-w-4xl
+                ">
+                {[
+                  { label: 'Hotel & Villa', route: '/hotels', icon: '🏨', img: '/images/hotel.jpg' },
+                  { label: 'packages', route: '/', icon: '🎁', img: '/images/packages.jpg' },
+                  { label: 'Water World', route: '/scuba', icon: '🌊', img: '/images/waterworld.jpg' },
+                  { label: 'Moped Rental', route: '/', icon: '🛵', img: '/images/rentals.jpg' },
+                  { label: 'Party & Events', route: '/', icon: '🎉', img: '/images/party.jpg' },
+                  { label: 'Luxury Villas', route: '/hotels', icon: '🏡', img: '/images/villa.jpg' },
+                ].map((item) => (
                   <div
                     key={item.label}
                     onClick={() => {
@@ -266,6 +279,14 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
           </div>
         )}
       </div>
+      
+      {/* Contact Modal */}
+      {showContactModal && (
+        <ContactModal 
+          open={showContactModal} 
+          onClose={() => setShowContactModal(false)} 
+        />
+      )}
     </nav>
   );
 };

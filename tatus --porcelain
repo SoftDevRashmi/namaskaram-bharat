@@ -1,0 +1,7 @@
+warning: in the working copy of 'src/app/components/Card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/components/ContactModal.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/components/Navbar.tsx', LF will be replaced by CRLF the next time Git touches it
+src/app/SecondPage.tsx
+src/app/components/Card.tsx
+src/app/components/ContactModal.tsx
+src/app/components/Navbar.tsx

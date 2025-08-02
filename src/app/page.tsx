@@ -30,7 +30,7 @@ export default function HomePage() {
   const [scubaPage, setScubaPage] = useState(false);
   const [customisedPackagesPage, setCustomisedPackagesPage] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
-  const [backgroundType, setBackgroundType] = useState<'image' | 'video'>('image');
+
   const router = useRouter();
 
   const handleHomeClick = () => {
@@ -45,48 +45,32 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen overflow-y-auto relative">
-      {/* Background Content - Covers entire page */}
-      {backgroundType === 'image' ? (
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="fixed inset-0 w-full h-full object-cover z-0"
+        style={{
+          objectFit: 'cover',
+          objectPosition: 'center',
+          minWidth: '100%',
+          minHeight: '100%',
+          width: 'auto',
+          height: 'auto'
+        }}
+      >
+        <source src="/images/backgroundImages/compressedBG.mp4" type="video/mp4" />
         <img 
           src="/images/backgroundImages/bg.jpg"
-          alt="Page Background"
-          className="fixed inset-0 w-full h-full object-cover z-0"
+          alt="Page Background Fallback"
+          className="fixed inset-0 w-full h-full object-cover"
         />
-        ) : (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="fixed inset-0 w-full h-full object-cover z-0"
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'center',
-              minWidth: '100%',
-              minHeight: '100%',
-              width: 'auto',
-              height: 'auto'
-            }}
-          >
-            <source src="/images/backgroundImages/compressedBG.mp4" type="video/mp4" />
-            <img 
-              src="/images/backgroundImages/bg.jpg"
-              alt="Page Background Fallback"
-              className="fixed inset-0 w-full h-full object-cover"
-            />
-          </video>
-        )}
+      </video>
 
-      {/* Background Toggle Button */}
-      <div className="fixed top-16 right-4 z-20 md:top-4">
-        <button
-          onClick={() => setBackgroundType(backgroundType === 'image' ? 'video' : 'image')}
-          className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300"
-        >
-          {backgroundType === 'image' ? '🎥 Video' : '📷 Image'}
-        </button>
-      </div>
+
 
       {/* Navbar */}
       <Navbar onHomeClick={handleHomeClick} />
