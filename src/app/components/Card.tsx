@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({ card, onClick, className }) => {
   return (
     <div
       onClick={onClick}
-      className={`rounded-lg cursor-pointer bg-white relative overflow-hidden ${className || 'w-[200px] h-[100px] md:w-[280px] md:h-[140px]'}`}
+      className={`rounded-lg cursor-pointer bg-white relative overflow-hidden ${className || 'w-[140px] h-[140px] md:w-[280px] md:h-[140px]'}`}
     >
       {/* Simple image with responsive sizing */}
       <img 
@@ -39,8 +39,8 @@ const Card: React.FC<CardProps> = ({ card, onClick, className }) => {
       />
       
       {/* Text area with responsive sizing */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white text-center p-1 md:p-2 rounded-b-md">
-        <span className="text-teal-600 font-bold text-sm md:text-sm">
+      <div className="absolute bottom-0 left-0 right-0 bg-white text-center p-1 md:p-2 rounded-b-md flex items-center justify-center min-h-[2rem]">
+        <span className="text-teal-600 font-bold text-sm md:text-base whitespace-nowrap">
           {card.title}
         </span>
       </div>

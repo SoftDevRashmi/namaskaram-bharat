@@ -213,7 +213,7 @@ const ScubaWaterSportsPage: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Navigation Bar */}
               <nav className="bg-transparent shadow-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4  bg-transparent ">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <img src="/images/logo2.png" alt="Logo" className="h-12 sm:h-16 p-2" />

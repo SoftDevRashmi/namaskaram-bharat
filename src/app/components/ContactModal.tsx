@@ -6,7 +6,7 @@ interface ContactModalProps {
 }
 
 const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
-  // Handle Escape key press
+  // Handle Escape key press and focus management
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -18,6 +18,12 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
       document.addEventListener('keydown', handleEscape);
       // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden';
+      
+      // Focus the modal when it opens
+      const modal = document.querySelector('[data-modal]');
+      if (modal) {
+        (modal as HTMLElement).focus();
+      }
     }
 
     return () => {
@@ -39,7 +45,12 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
       
       {/* Modal Content */}
       <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 pointer-events-none">
-        <div className="bg-white rounded-2xl p-6 sm:p-8 w-[90%] max-w-md shadow-2xl text-center relative pointer-events-auto">
+        <div 
+          className="bg-white rounded-2xl p-6 sm:p-8 w-[90%] max-w-md shadow-2xl text-center relative pointer-events-auto"
+          onClick={(e) => e.stopPropagation()}
+          data-modal
+          tabIndex={-1}
+        >
           <button 
             onClick={onClose} 
             className="absolute top-4 right-4 text-2xl text-gray-500 hover:text-gray-700 transition-colors bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md"

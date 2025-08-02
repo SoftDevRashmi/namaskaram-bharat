@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 
-
 import Card from "./components/Card";
 import Navbar from "./components/Navbar";
 import SecondPage from "./SecondPage";
@@ -70,67 +69,60 @@ export default function HomePage() {
         />
       </video>
 
-
-
       {/* Navbar */}
-      <Navbar onHomeClick={handleHomeClick} />
+      <Navbar />
 
       {/* Hero Section */}
-      <div className="relative min-h-screen">
-        
-        {/* Hero Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white text-center drop-shadow-lg leading-tight font-serif italic mb-12" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+      <div className="relative md:min-h-screen">
+                 <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-4 md:pt-16">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white text-center drop-shadow-lg leading-tight font-serif italic mb-8 md:mb-12" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Where Goa's tide meets your traveler's soul
           </h1>
 
-          {/* Cards */}
-          <div className="max-w-7xl mx-auto w-full">
-            <div className="flex flex-col items-center">
+                         {/* Cards (Top 3) */}
+               <div className="max-w-7xl mx-auto w-full">
+                 <div className="flex flex-col items-center">
+                   <div className="grid grid-cols-3 gap-2 justify-center">
+                     {cards.slice(0, 3).map((card) => (
+                       <div key={card.id} className="flex justify-center">
+                         <Card
+                           card={card}
+                           onClick={() =>
+                             card.title.toLowerCase().includes("hotel")
+                               ? router.push("/hotels")
+                               : card.title === "Customised Packages"
+                               ? setCustomisedPackagesPage(true)
+                               : setSelectedCard(card)
+                           }
+                           className="w-full max-w-[550px] h-[120px] md:h-[160px]"
+                         />
+                       </div>
+                     ))}
+                   </div>
 
-              {/* Top row: Always 3 cards */}
-              <div className="grid grid-cols-3 gap-4 justify-center">
-                {cards.slice(0, 3).map((card) => (
-                  <div key={card.id} className="flex justify-center">
-                    <Card
-                      card={card}
-                      onClick={() =>
-                        card.title.toLowerCase().includes("hotel")
-                          ? router.push("/hotels")
-                          : card.title === "Customised Packages"
-                          ? setCustomisedPackagesPage(true)
-                          : setSelectedCard(card)
-                      }
-                      className="w-full max-w-[280px] h-[200px]"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Bottom row: Always 2 cards */}
-              <div className="grid grid-cols-2 gap-4 mt-6 justify-center">
-                {cards.slice(3, 5).map((card) => (
-                  <div key={card.id} className="flex justify-center">
-                    <Card
-                      card={card}
-                      onClick={() =>
-                        card.title.toLowerCase().includes("hotel")
-                          ? router.push("/hotels")
-                          : card.title === "Customised Packages"
-                          ? setCustomisedPackagesPage(true)
-                          : setSelectedCard(card)
-                      }
-                      className="w-full max-w-[280px] h-[200px]"
-                    />
-                  </div>
-                ))}
-              </div>
-
+                              {/* Bottom row: Always 2 cards */}
+                <div className="grid grid-cols-2 gap-2 mt-4 justify-center">
+                  {cards.slice(3, 5).map((card) => (
+                    <div key={card.id} className="flex justify-center">
+                      <Card
+                        card={card}
+                        onClick={() =>
+                          card.title.toLowerCase().includes("hotel")
+                            ? router.push("/hotels")
+                            : card.title === "Customised Packages"
+                            ? setCustomisedPackagesPage(true)
+                            : setSelectedCard(card)
+                        }
+                        className="w-full max-w-[550px] h-[120px] md:h-[160px]"
+                      />
+                    </div>
+                  ))}
+                </div>
             </div>
           </div>
 
           {/* Explore Button */}
-          <div className="flex justify-center mt-8 sm:mt-12 px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center mt-6 sm:mt-12 px-4 sm:px-6 lg:px-8">
             <Link href="/hotels">
               <button
                 className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg bg-white hover:bg-gray-50 text-teal-600 border-2 border-teal-500 cursor-pointer transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -146,42 +138,45 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Our Services */}
-      <div
-        className="max-w-7xl mx-auto py-12 px-1"
-        style={{
-          background: "rgba(20,184,166,0.07)",
-          borderRadius: 18,
-          margin: "2rem auto",
-          boxShadow: "0 2px 12px 0 rgba(20,184,166,0.08)",
-        }}
-      >
-        <div className="flex flex-col items-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl text-gray-800 text-center mt-4 font-bold">Our Services</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 mt-4 w-full max-w-5xl">
-            {[
-              { id: 1, title: "Hotel & Villa", img: "/images/hotel.jpg" },
-              { id: 2, title: "packages", img: "/images/packages.jpg" },
-              { id: 3, title: "Water World", img: "/images/waterworld.jpg" },
-              { id: 4, title: "Moped Rental", img: "/images/rentals.jpg" },
-              { id: 5, title: "Party & Events", img: "/images/party.jpg" },
-              { id: 6, title: "Luxury Villas", img: "/images/villa.jpg" },
-            ].map((service) => (
-              <Card
-                key={service.id}
-                card={service}
-                className="md:w-[320px] md:h-[180px]"
-                onClick={() => {
-                  if (service.title === "Water World") {
-                    setScubaPage(true);
-                  } else if (service.title === "Hotel & Villa") {
-                    router.push("/hotels");
-                  } else if (service.title === "Luxury Villas") {
-                    setSelectedCard({ id: 0, title: "Luxury Villas", img: "" });
-                  }
-                }}
-              />
-            ))}
+             {/* Our Services Heading & 6 Cards */}
+       <div className="max-w-7xl mx-auto px-2 sm:px-4 relative z-20">
+         <h2 className="text-2xl sm:text-3xl md:text-4xl text-white text-center font-bold mt-6 md:mt-2 mb-4">
+           Our Services
+         </h2>
+        <div
+          className="py-4 md:py-8"
+          style={{
+            background: "rgba(20,184,166,0.07)",
+            borderRadius: 18,
+            boxShadow: "0 2px 12px 0 rgba(20,184,166,0.08)",
+          }}
+        >
+          <div className="flex flex-col items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 w-full max-w-5xl">
+              {[
+                { id: 1, title: "Hotel & Villa", img: "/images/hotel.jpg" },
+                { id: 2, title: "packages", img: "/images/packages.jpg" },
+                { id: 3, title: "Water World", img: "/images/waterworld.jpg" },
+                { id: 4, title: "Moped Rental", img: "/images/rentals.jpg" },
+                { id: 5, title: "Party & Events", img: "/images/party.jpg" },
+                { id: 6, title: "Luxury Villas", img: "/images/villa.jpg" },
+              ].map((service) => (
+                <Card
+                  key={service.id}
+                  card={service}
+                  className="w-[200px] h-[120px] mx-auto md:w-[320px] md:h-[180px]"
+                  onClick={() => {
+                    if (service.title === "Water World") {
+                      setScubaPage(true);
+                    } else if (service.title === "Hotel & Villa") {
+                      router.push("/hotels");
+                    } else if (service.title === "Luxury Villas") {
+                      setSelectedCard({ id: 0, title: "Luxury Villas", img: "" });
+                    }
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
