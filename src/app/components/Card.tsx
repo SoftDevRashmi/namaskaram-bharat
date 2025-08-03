@@ -6,17 +6,37 @@ interface CardProps {
     title: string;
     img: string;
   };
-  onClick: () => void;
+  onClick: (e?: React.MouseEvent) => void;
   className?: string;
 }
 
 const Card: React.FC<CardProps> = ({ card, onClick, className }) => {
   console.log(`Card ${card.id}: Loading image from ${card.img}`);
   
+  const handleClick = (e: React.MouseEvent) => {
+    console.log(`Card ${card.id} (${card.title}) clicked!`);
+    
+    // Prevent any default behavior
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Add a brief visual feedback
+    const target = e.currentTarget as HTMLElement;
+    target.style.transform = 'scale(0.98)';
+    
+    // Reset the transform after a short delay
+    setTimeout(() => {
+      target.style.transform = '';
+    }, 150);
+    
+    onClick(e);
+  };
+  
   return (
     <div
-      onClick={onClick}
-      className={`rounded-lg cursor-pointer bg-white relative overflow-hidden ${className || 'w-[140px] h-[140px] md:w-[280px] md:h-[140px]'}`}
+      onClick={handleClick}
+      className={`rounded-lg cursor-pointer bg-white relative overflow-hidden transition-all duration-200 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 ${className || 'w-[140px] h-[140px] md:w-[280px] md:h-[140px]'}`}
+      style={{ pointerEvents: 'auto', zIndex: 10 }}
     >
       {/* Simple image with responsive sizing */}
       <img 
@@ -39,8 +59,8 @@ const Card: React.FC<CardProps> = ({ card, onClick, className }) => {
       />
       
       {/* Text area with responsive sizing */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white text-center p-1 md:p-2 rounded-b-md flex items-center justify-center min-h-[2rem]">
-        <span className="text-teal-600 font-bold text-sm md:text-base whitespace-nowrap">
+      <div className="absolute bottom-0 left-0 right-0 bg-white text-center p-1 md:p-2 rounded-b-md flex items-center justify-center min-h-[2rem] md:min-h-[2rem]">
+        <span className="text-teal-600 font-bold text-xs md:text-base px-1 md:px-0 leading-tight">
           {card.title}
         </span>
       </div>

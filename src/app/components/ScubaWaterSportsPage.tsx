@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import activities from '../../data/activities.json';
+import ContactModal from './ContactModal';
 
 interface Activity {
   title: string;
@@ -208,116 +209,136 @@ const Modal = ({ activity, onClose }: { activity: Activity, onClose: () => void 
 
 const ScubaWaterSportsPage: React.FC = () => {
   const [modalIdx, setModalIdx] = useState<number | null>(null);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* Navigation Bar */}
-              <nav className="bg-transparent shadow-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4  bg-transparent ">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center">
-              <img src="/images/logo2.png" alt="Logo" className="h-12 sm:h-16 p-2" />
-              <span className="text-lg sm:text-xl md:text-2xl font-bold text-white">Namaskaram Bharat</span>
-            </div>
-            <a 
-              href="/"
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-              <span className="hidden sm:inline">Back to Services</span>
-              <span className="sm:hidden">Back</span>
-            </a>
-          </div>
-        </div>
-      </nav>
-
+    <div className="flex flex-col min-h-screen relative">
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 w-full h-full object-cover z-0"
+        style={{
+          backgroundImage: `url('/images/backgroundImages/lightAquabg.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
+      
+      {/* Back Button */}
+      <button
+        onClick={() => window.history.back()}
+        className="absolute top-2 left-2 sm:top-4 sm:left-4 md:top-6 md:left-6 bg-gradient-to-br from-green-300 to-blue-500 hover:bg-gradient-to-bl hover:from-green-200 hover:to-blue-400 text-white px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-3 rounded-lg sm:rounded-full transition-all duration-300 backdrop-blur-sm flex items-center gap-1 sm:gap-2 z-20 shadow-lg"
+        aria-label="Go back"
+      >
+        <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+        <span className="text-xs sm:text-sm md:text-base font-medium">Back</span>
+      </button>
+      
       {/* Main Content */}
-      <div className="flex-1 bg-gradient-to-b from-blue-100 to-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex-1 py-4 sm:py-8 md:py-12 px-2 sm:px-4 md:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-6 sm:mb-8 md:mb-12 mt-12 sm:mt-16 md:mt-20">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-600 mb-2 sm:mb-4">
               Scuba & Water Sports in Goa
             </h1>
-            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto px-2">
               Book the best scuba diving and water sports packages in Goa. Certified instructors, safe equipment, and unforgettable experiences await you!
             </p>
           </div>
 
           {/* Featured Activities Section */}
-          <div className="py-12 px-4 md:px-16">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Featured Activities</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="py-2 sm:py-4 px-2 sm:px-4 md:px-16">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-teal-600 mb-4 sm:mb-6 md:mb-8">Featured Activities</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
               {/* Render all cards except Offers Voucher and Customized Packages */}
               {activities.filter(a => a.title !== 'Offers Voucher' && a.title !== 'Customised Packages').map((activity, idx) => (
                 <div
                   key={activity.title}
-                  className="bg-white bg-opacity-90 rounded-lg shadow-lg overflow-hidden flex flex-col items-center relative group"
+                  className="bg-white bg-opacity-90 rounded-lg shadow-lg overflow-hidden flex flex-col items-center relative group max-w-lg sm:max-w-none mx-auto h-96 sm:h-auto"
                 >
                   <img
                     src={activity.img}
                     alt={activity.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-36 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="p-4 flex flex-col items-center w-full">
-                    <h3 className="text-xl font-bold text-teal-700 mb-2 text-center">{activity.title}</h3>
-                    <div className="text-lg font-semibold text-blue-700 mb-2 text-center">
-                      {typeof activity.price === 'string'
-                        ? activity.price
-                        : <>
-                            <div>With Watersports: {activity.price.with_watersports}</div>
-                            <div>Without Watersports: {activity.price.without_watersports}</div>
-                          </>
-                      }
+                  <div className="p-3 sm:p-4 flex flex-col items-center w-full flex-1 justify-between">
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-bold text-teal-700 mb-2 text-center">{activity.title}</h3>
+                      <div className="text-base sm:text-lg font-semibold text-blue-700 mb-2 text-center">
+                        {typeof activity.price === 'string'
+                          ? activity.price
+                          : <>
+                              <div className="text-sm sm:text-base">With Watersports: {activity.price.with_watersports}</div>
+                              <div className="text-sm sm:text-base">Without Watersports: {activity.price.without_watersports}</div>
+                            </>
+                        }
+                      </div>
+                      {activity.time && <div className="text-xs sm:text-sm text-gray-600 mb-2">{activity.time}</div>}
                     </div>
-                    {activity.time && <div className="text-sm text-gray-600 mb-2">{activity.time}</div>}
-                    {/* More Details Button */}
-                    <button
-                      className="mt-2 mb-2 px-4 py-1 bg-teal-600 text-white rounded hover:bg-teal-700 transition text-sm"
-                      onClick={() => setModalIdx(idx)}
-                    >
-                      More Details
-                    </button>
-                    {/* Book Now Button */}
-                    <button className="bg-gradient-to-r from-teal-600 to-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-teal-700 hover:to-blue-600 transition mt-2 w-full">Book Now</button>
+                    <div className="w-full">
+                      {/* More Details Button */}
+                      <button
+                        className="mt-2 mb-2 px-3 sm:px-4 py-1 bg-teal-600 text-white rounded hover:bg-teal-700 transition text-xs sm:text-sm w-full"
+                        onClick={() => setModalIdx(idx)}
+                      >
+                        More Details
+                      </button>
+                      {/* Book Now Button */}
+                      <button 
+                        onClick={() => setShowContactModal(true)}
+                        className="bg-gradient-to-r from-teal-600 to-blue-500 text-white px-3 sm:px-4 py-2 rounded-lg font-semibold hover:from-teal-700 hover:to-blue-600 transition mt-2 w-full text-sm sm:text-base"
+                      >
+                        Book Now
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
             {/* Separate grid for Offers Voucher and Customised Packages */}
-            <div className="flex flex-col gap-8 w-full mt-8">
+            <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 w-full mt-4 sm:mt-6 md:mt-8">
               {activities.filter(a => a.title === 'Offers Voucher' || a.title === 'Customised Packages').map((activity, idx) => (
                 <div
                   key={activity.title}
-                  className="bg-white bg-opacity-90 rounded-lg shadow-lg overflow-hidden flex flex-col items-center relative group w-full"
+                  className="bg-white bg-opacity-90 rounded-lg shadow-lg overflow-hidden flex flex-col items-center relative group w-full max-w-lg sm:max-w-none mx-auto h-96 sm:h-auto"
                 >
                   <img
                     src={activity.img}
                     alt={activity.title}
-                    className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-36 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="p-4 flex flex-col items-center w-full">
-                    <h3 className="text-xl font-bold text-teal-700 mb-2 text-center">{activity.title}</h3>
-                    <div className="text-lg font-semibold text-blue-700 mb-2 text-center">
-                      {typeof activity.price === 'string'
-                        ? activity.price
-                        : <>
-                            <div>With Watersports: {activity.price.with_watersports}</div>
-                            <div>Without Watersports: {activity.price.without_watersports}</div>
-                          </>
-                      }
+                  <div className="p-3 sm:p-4 flex flex-col items-center w-full flex-1 justify-between">
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-bold text-teal-700 mb-2 text-center">{activity.title}</h3>
+                      <div className="text-base sm:text-lg font-semibold text-blue-700 mb-2 text-center">
+                        {typeof activity.price === 'string'
+                          ? activity.price
+                          : <>
+                              <div className="text-sm sm:text-base">With Watersports: {activity.price.with_watersports}</div>
+                              <div className="text-sm sm:text-base">Without Watersports: {activity.price.without_watersports}</div>
+                            </>
+                        }
+                      </div>
+                      {activity.time && <div className="text-xs sm:text-sm text-gray-600 mb-2">{activity.time}</div>}
                     </div>
-                    {activity.time && <div className="text-sm text-gray-600 mb-2">{activity.time}</div>}
-                    {/* More Details Button */}
-                    <button
-                      className="mt-2 mb-2 px-4 py-1 bg-teal-600 text-white rounded hover:bg-teal-700 transition text-sm"
-                      onClick={() => setModalIdx(idx)}
-                    >
-                      More Details
-                    </button>
-                    {/* Book Now Button */}
-                    <button className="bg-gradient-to-r from-teal-600 to-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-teal-700 hover:to-blue-600 transition mt-2 w-full">Book Now</button>
+                    <div className="w-full">
+                      {/* More Details Button */}
+                      <button
+                        className="mt-2 mb-2 px-3 sm:px-4 py-1 bg-teal-600 text-white rounded hover:bg-teal-700 transition text-xs sm:text-sm w-full"
+                        onClick={() => setModalIdx(idx)}
+                      >
+                        More Details
+                      </button>
+                      {/* Book Now Button */}
+                      <button 
+                        onClick={() => setShowContactModal(true)}
+                        className="bg-gradient-to-r from-teal-600 to-blue-500 text-white px-3 sm:px-4 py-2 rounded-lg font-semibold hover:from-teal-700 hover:to-blue-600 transition mt-2 w-full text-sm sm:text-base"
+                      >
+                        Book Now
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -345,6 +366,14 @@ const ScubaWaterSportsPage: React.FC = () => {
       <footer className="bg-transparent text-white py-6 text-center">
         <p>&copy; {new Date().getFullYear()} Namaskaram Bharat. All rights reserved.</p>
       </footer>
+
+      {/* Contact Modal */}
+      {showContactModal && (
+        <ContactModal 
+          open={showContactModal} 
+          onClose={() => setShowContactModal(false)} 
+        />
+      )}
     </div>
   );
 };

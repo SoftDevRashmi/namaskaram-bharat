@@ -239,6 +239,146 @@
         "Hitai Beach Villa bedroom8.jpeg",
         "Hitai Beach Villa swimming pool2.jpeg"
       ]
+    },
+    {
+      "name": "Acron Seawinds Baga-Arpora",
+      "location": "",
+      "room_types": [
+        {
+          "type": "2BHK",
+          "price": 7500,
+          "discounted_price": 7000
+        }
+      ],
+      "facilities": {
+        "basic": [
+          "Swimming Pool",
+          "Housekeeping",
+          "Free Wi-Fi",
+          "Parking",
+          "Power Backup",
+          "Air Conditioning",
+          "Private Bar",
+          "Common setting area",
+          "Television",
+          "Basic Gym Facility"
+        ],
+        "general_services": [
+          "Luggage Assistance",
+          "Concierge"
+        ],
+        "kitchen": [
+          "Stove/Induction",
+          "Refrigerator",
+          "Utensils"
+        ],
+        "dining_area": {
+          "seating_capacity": "8-10 Seater"
+        },
+        "room": [
+          "Queen size bed",
+          "Blanket",
+          "Air Conditioning",
+          "Cupboard",
+          "Sofa",
+          "Table"
+        ],
+        "bathroom": [
+          "Luggage storage",
+          "Hot & Cold Water",
+          "Toiletries",
+          "Closet",
+          "Dental Kit",
+          "Geyser/ Water heater",
+          "Western Toilet Seat"
+        ],
+        "food_and_drinks": [
+          "Restaurant"
+        ],
+        "safety_and_security": [
+          "Fire Extinguishers"
+        ],
+        "caretaker_responsibilities": [
+          "Cleaning kitchen/utensils",
+          "Cleaning property",
+          "Gardening"
+        ]
+      },
+      "images": []
+    },
+    {
+      "name": "Happy Moon Boutique Villa",
+      "location": "",
+      "room_types": [
+        {
+          "type": "4BHK",
+          "price": 22000,
+          "discounted_price": 20000
+        }
+      ],
+      "facilities": {
+        "basic": [
+          "Private Swimming Pool",
+          "Housekeeping",
+          "Free Wi-Fi",
+          "Parking",
+          "Power Backup",
+          "Air Conditioning",
+          "Private Bar",
+          "Common setting area",
+          "Television"
+        ],
+        "general_services": [
+          "Luggage Assistance",
+          "Concierge"
+        ],
+        "kitchen": [
+          "Stove/Induction",
+          "Refrigerator",
+          "Utensils"
+        ],
+        "dining_area": {
+          "seating_capacity": "8-10 Seater"
+        },
+        "room": [
+          "Queen size bed",
+          "Blanket",
+          "Air Conditioning",
+          "Cupboard",
+          "Sofa",
+          "Table"
+        ],
+        "bathroom": [
+          "Luggage storage",
+          "Hot & Cold Water",
+          "Toiletries",
+          "Closet",
+          "Dental Kit",
+          "Western Toilet Seat",
+          "Geyser/ Water heater"
+        ],
+        "food_and_drinks": [
+          "Restaurant"
+        ],
+        "safety_and_security": [
+          "Fire Extinguishers"
+        ],
+        "caretaker_responsibilities": [
+          "Cleaning kitchen/utensils",
+          "Cleaning property",
+          "Gardening"
+        ]
+      },
+      "images": ["happymoonFront.jpeg",
+      "happymoo nBackview.jpeg",
+      "happymoonBedroom.jpeg",
+      "happymoonBedroom2.jpeg",
+      "happymoonSeating.jpeg",
+      "happymoonGraden.jpeg",
+      "happymoonSwimpool.jpeg",
+      "happymoonbathroom3.jpeg",
+      "happymmonBathroom2.jpeg",
+      "happymoonBathroom4.jpeg"]
     }
   ]
-} 
+}

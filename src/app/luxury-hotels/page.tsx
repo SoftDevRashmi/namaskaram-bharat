@@ -1,14 +1,11 @@
 "use client";
 
-import { useSearchParams } from 'next/navigation';
-import HotelsPage from '../components/HotelsPage';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
+import React from "react";
+import HotelsPage from "../components/HotelsPage";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
-export default function HotelsPageWrapper() {
-  const searchParams = useSearchParams();
-  const filter = searchParams.get('filter');
-
+export default function LuxuryHotelsPage() {
   return (
     <div className="min-h-screen relative">
       {/* Background Image */}
@@ -24,10 +21,9 @@ export default function HotelsPageWrapper() {
       
       <div className="relative z-10">
         <Navbar onHomeClick={() => window.location.href = "/"} />
-        <HotelsPage filterType={filter} />
+        <HotelsPage filterType="luxury" />
         <Footer />
       </div>
     </div>
   );
 } 
-

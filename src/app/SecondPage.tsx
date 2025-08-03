@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './components/Card';
 import { useRouter } from 'next/navigation';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 interface Card {
   id: number;
@@ -16,7 +17,7 @@ interface SecondPageProps {
 
 const services = [
   { id: 1, title: "Hotel & Villa", img: "/images/hotel.jpg" },
-  { id: 2, title: "packages", img: "/images/packages.jpg" },
+  { id: 2, title: "Packages", img: "/images/packages.jpg" },
   { id: 3, title: "Water World", img: "/images/waterworld.jpg" },
   { id: 4, title: "Moped Rental", img: "/images/rentals.jpg" },
   { id: 5, title: "Party & Events", img: "/images/party.jpg" },
@@ -50,48 +51,55 @@ const SecondPage: React.FC<SecondPageProps> = ({ card, onBack }) => {
       
       {/* Content overlay */}
       <div className="relative z-10">
-        <Navbar />
-        
-        {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 px-4 sm:px-8 pt-4 text-base text-cyan-100 font-medium">
-          <a 
-            href="/"
-            className="text-teal-400 hover:text-teal-300 cursor-pointer transition-colors underline"
-          >
-            Home
-          </a>
-          <span className="text-blue-400 font-bold">&gt;</span>
-          <span className="text-white opacity-90">Our Services</span>
-        </nav>
+      <Navbar onHomeClick={onBack} />
+      
+      {/* Breadcrumbs */}
+      <nav className="flex items-center gap-2 px-4 sm:px-8 pt-4 text-base text-cyan-100 font-medium">
+        <button 
+          onClick={onBack}
+          className="text-teal-400 hover:text-teal-300 cursor-pointer transition-colors underline bg-transparent border-none"
+        >
+          Home
+        </button>
+        <span className="text-blue-400 font-bold">&gt;</span>
+        <span className="text-white opacity-90">Our Services</span>
+      </nav>
 
-        {/* Our Services Section */}
-        <div className="py-12 px-4">
+      {/* Our Services Section */}
+      <div className="py-12 px-4">
           <h3 className="text-3xl md:text-4xl lg:text-5xl text-white mt-8 mb-6 font-bold text-center drop-shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
             Our Services
           </h3>
-          
-          <div className="w-full max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
-              {services.map((service) => (
-                <Card
-                  key={service.id}
-                  card={service}
-                  className="w-[240px] h-[120px] sm:w-[260px] sm:h-[140px] md:w-[280px] md:h-[160px] lg:w-[300px] lg:h-[180px]"
-                  onClick={() => {
+        
+        <div className="w-full max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
+            {services.map((service) => (
+              <Card
+                key={service.id}
+                card={service}
+        className="w-[240px] h-[120px] sm:w-[260px] sm:h-[140px] md:w-[280px] md:h-[160px] lg:w-[300px] lg:h-[180px]"
+                onClick={() => {
+                    console.log("SecondPage card clicked:", service.title);
                     if (service.title === 'Hotel & Villa') {
                       router.push('/hotels');
+                    } else if (service.title === 'Water World') {
+                      console.log("Navigating to scuba page from SecondPage");
+                      router.push('/scuba');
+                    } else if (service.title === 'Luxury Villas') {
+                      console.log("Navigating to luxury hotels page from SecondPage");
+                      router.push('/luxury-hotels');
                     }
-                  }}
-                />
-              ))}
-            </div>
+                }}
+              />
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* Top Destinations Section */}
-        <div className="py-12 px-4">
-          <h2 className="text-3xl font-bold text-center text-white mb-8">Top destinations</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {/* Top Destinations Section */}
+      <div className="py-12 px-4">
+        <h2 className="text-3xl font-bold text-center text-white mb-8">Top destinations</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
                 name: 'Baga Beach',
@@ -119,7 +127,7 @@ const SecondPage: React.FC<SecondPageProps> = ({ card, onBack }) => {
               },
               {
                 name: 'Palolem Beach',
-                img: 'https://unsplash.com/photos/rocky-beach-meets-the-ocean-under-a-blue-sky-YR365zEherY',
+                img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
                 stats: '3 Activities · 2 Cars · 15 Hotels · 12 Rentals · 15 Tours',
                 color: 'text-pink-300',
               },
@@ -139,26 +147,11 @@ const SecondPage: React.FC<SecondPageProps> = ({ card, onBack }) => {
               </div>
             ))}
           </div>
-        </div>
+      </div>
 
         {/* Footer */}
-        <footer className="bg-black/20 backdrop-blur-sm text-white pt-3 md:pt-12 pb-2 md:pb-4 px-4 mt-8 border-t border-white/20 relative z-10">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-4">
-                <img src="/images/logo2.png" alt="Namaskaram Bharat" className="h-6 mr-2" />
-                <span className="font-bold text-base text-white">Namaskaram Bharat</span>
-              </div>
-              <p className="text-xs text-gray-300 mb-4">
-                Your gateway to unforgettable experiences in the paradise of Goa.
-              </p>
-              <div className="text-xs text-gray-300">
-                Namaskaram Bharat © Copyright {new Date().getFullYear()}
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
+        <Footer />
+        </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import ContactModal from './ContactModal';
 
-const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
+const Navbar: React.FC<{ onHomeClick?: () => void; showBackButton?: boolean }> = ({ onHomeClick, showBackButton = false }) => {
   const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,8 +28,8 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
           {/* Logo */}
           <div className="flex items-center cursor-pointer z-10" onClick={() => router.push('/') } style={{ backgroundColor: 'transparent !important', background: 'none !important' }}>
             <img
-              src="/images/logo2.png"
-              alt="Logo"
+                src="/images/logo2.png"
+                alt="Logo"
               className="h-12 sm:h-16 md:h-24 lg:h-28 flex-shrink-0"
             />
           </div>
@@ -112,15 +112,27 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
               </svg>
               Home
             </button>
-            <a
-              href="#"
+            {showBackButton && (
+              <button
+                onClick={() => window.history.back()}
+                className="text-white bg-gradient-to-br from-green-300 to-blue-500 hover:bg-gradient-to-bl hover:from-green-200 hover:to-blue-400 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-full text-sm px-6 py-2.5 text-center me-2 mb-2 transition-all duration-300 shadow-lg flex items-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span className="hidden sm:inline">Back to Previous</span>
+                <span className="sm:hidden">Back</span>
+              </button>
+            )}
+            <button
+              onClick={() => router.push('/about')}
               className="text-white bg-gradient-to-br from-green-300 to-blue-500 hover:bg-gradient-to-bl hover:from-green-200 hover:to-blue-400 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-full text-sm px-6 py-2.5 text-center me-2 mb-2 transition-all duration-300 shadow-lg flex items-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               About
-            </a>
+            </button>
             <div
               className="relative group"
               onMouseEnter={openDropdown}
@@ -141,7 +153,7 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
                 onBlur={closeDropdown}
               >
                 {/* ...icon... */}
-                Services
+              Services
               </button>
               {showDropdown && (
                 <div
@@ -216,7 +228,7 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
               <div className="space-y-3 mb-6">
                 {[
                   { label: 'Home', route: '/', icon: '🏠' },
-                  { label: 'About', route: '#', icon: 'ℹ️' },
+                  { label: 'About', route: '/about', icon: 'ℹ️' },
                   { label: 'Blog', route: '#', icon: '📝' },
                   { label: 'Contact', route: '#', icon: '📞' },
                 ].map((item) => (
@@ -266,12 +278,12 @@ const Navbar: React.FC<{ onHomeClick?: () => void }> = ({ onHomeClick }) => {
                       <span className="text-sm font-medium text-center">{item.label}</span>
                     </button>
                   ))}
-                </div>
-              </div>
-            </div>
+          </div>
+        </div>
+      </div>
           </div>
         )}
-      </div>
+        </div>
       {/* Contact Modal */}
       {showContactModal && (
         <ContactModal 

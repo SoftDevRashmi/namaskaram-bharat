@@ -6,9 +6,11 @@ import Navbar from "./components/Navbar";
 import SecondPage from "./SecondPage";
 import ScubaWaterSportsPage from "./components/ScubaWaterSportsPage";
 import CustomisedPackagesPage from "./components/CustomisedPackagesPage";
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import ContactModal from "./components/ContactModal";
+import Footer from "./components/Footer";
 
 export interface CardType {
   id: number;
@@ -30,6 +32,7 @@ export default function HomePage() {
   const [customisedPackagesPage, setCustomisedPackagesPage] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
 
+
   const router = useRouter();
 
   const handleHomeClick = () => {
@@ -38,6 +41,7 @@ export default function HomePage() {
     setCustomisedPackagesPage(false);
   };
 
+  console.log("Current scubaPage state:", scubaPage);
   if (scubaPage) return <ScubaWaterSportsPage />;
   if (customisedPackagesPage) return <CustomisedPackagesPage onBack={handleHomeClick} />;
   if (selectedCard) return <SecondPage card={selectedCard} onBack={() => setSelectedCard(null)} />;
@@ -139,7 +143,7 @@ export default function HomePage() {
       </div>
 
              {/* Our Services Heading & 6 Cards */}
-       <div className="max-w-7xl mx-auto px-2 sm:px-4 relative z-20">
+       <div className="max-w-7xl mx-auto px-2 sm:px-4 relative z-10">
          <h2 className="text-2xl sm:text-3xl md:text-4xl text-white text-center font-bold mt-6 md:mt-2 mb-4">
            Our Services
          </h2>
@@ -159,142 +163,78 @@ export default function HomePage() {
                 { id: 3, title: "Water World", img: "/images/waterworld.jpg" },
                 { id: 4, title: "Moped Rental", img: "/images/rentals.jpg" },
                 { id: 5, title: "Party & Events", img: "/images/party.jpg" },
-                { id: 6, title: "Luxury Villas", img: "/images/villa.jpg" },
               ].map((service) => (
                 <Card
                   key={service.id}
                   card={service}
                   className="w-[200px] h-[120px] mx-auto md:w-[320px] md:h-[180px]"
                   onClick={() => {
+                    console.log("Card clicked:", service.title);
+                    console.log("Service ID:", service.id);
                     if (service.title === "Water World") {
-                      setScubaPage(true);
+                      console.log("Navigating to scuba page");
+                      try {
+                        router.push("/scuba");
+                      } catch (error) {
+                        console.error("Navigation error:", error);
+                        window.location.href = "/scuba";
+                      }
                     } else if (service.title === "Hotel & Villa") {
-                      router.push("/hotels");
+                      console.log("Navigating to hotels page");
+                      try {
+                        router.push("/hotels");
+                      } catch (error) {
+                        console.error("Navigation error:", error);
+                        window.location.href = "/hotels";
+                      }
                     } else if (service.title === "Luxury Villas") {
-                      setSelectedCard({ id: 0, title: "Luxury Villas", img: "" });
+                      console.log("Navigating to luxury hotels page");
+                      try {
+                        router.push("/hotels?filter=luxury");
+                      } catch (error) {
+                        console.error("Navigation error:", error);
+                        window.location.href = "/hotels?filter=luxury";
+                      }
+                    } else {
+                      console.log("No specific handler for:", service.title);
                     }
                   }}
                 />
               ))}
+              
+              {/* Luxury Villas Card - Robust Click Handling */}
+              <div className="relative w-[200px] h-[120px] mx-auto md:w-[320px] md:h-[180px]">
+                <Card
+                  card={{ id: 6, title: "Luxury Villas", img: "/images/villa.jpg" }}
+                  className="w-full h-full"
+                  onClick={() => {
+                    console.log("Luxury Villas card clicked - navigating to luxury hotels page");
+                    window.location.href = "/luxury-hotels";
+                  }}
+                />
+                {/* Fallback transparent button */}
+                <button
+                  className="absolute inset-0 w-full h-full bg-transparent z-10"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log("Luxury Villas fallback button clicked");
+                    window.location.href = "/luxury-hotels";
+                  }}
+                  style={{ pointerEvents: 'auto' }}
+                >
+                  <span className="sr-only">Luxury Villas</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="bg-black/20 backdrop-blur-sm text-white pt-3 md:pt-12 pb-2 md:pb-4 px-4 sm:px-6 lg:px-8 mt-8 border-t border-white/20 w-full">
-        <div className="w-full max-w-none">
-          {/* Mobile Layout */}
-          <div className="md:hidden">
-            {/* Logo and Title - Centered */}
-            <div className="flex flex-col items-center mb-3">
-              <div className="flex items-center mb-1">
-                <img src="/images/logo2.png" alt="Namaskaram Bharat" className="h-6 mr-2" />
-                <span className="font-bold text-base text-white">
-                  <span className="text-orange-400">नमस्कारम </span>
-                  <span className="text-blue-900">Bharat</span>
-                </span>
-              </div>
-              <p className="text-xs text-center text-gray-300 max-w-xs">
-                Your gateway to unforgettable experiences in the paradise of Goa.
-              </p>
-            </div>
-            
-            {/* Quick Links and Important Links - Side by Side */}
-            <div className="grid grid-cols-2 gap-3 mb-3">
-              <div>
-                <h4 className="font-bold text-white mb-1 text-xs">Quick Links</h4>
-                <ul className="space-y-0.5">
-                  <li><a href="#" className="text-xs hover:text-orange-300 text-gray-300">Tour Package</a></li>
-                  <li><a href="#" className="text-xs hover:text-orange-300 text-gray-300">Hotel Stays</a></li>
-                  <li><a href="#" className="text-xs hover:text-orange-300 text-gray-300">Rented Villas</a></li>
-                  <li><a href="#" className="text-xs hover:text-orange-300 text-gray-300">Cars & Bikes</a></li>
-                  <li><a href="#" className="text-xs hover:text-orange-300 text-gray-300">About us</a></li>
-                  <li><a href="#" className="text-xs hover:text-orange-300 text-gray-300">Blog</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-white mb-1 text-xs">Important Links</h4>
-                <ul className="space-y-0.5">
-                  <li><a href="#" onClick={() => setShowContactModal(true)} className="text-xs hover:text-orange-300 text-gray-300">Contact Us</a></li>
-                  <li><a href="#" className="text-xs hover:text-orange-300 text-gray-300">Privacy Policy</a></li>
-                  <li><a href="#" className="text-xs hover:text-orange-300 text-gray-300">Terms & Condition</a></li>
-                  <li><a href="#" className="text-xs hover:text-orange-300 text-gray-300">Return & Refund</a></li>
-                </ul>
-              </div>
-            </div>
-            
-            {/* Contact Info - Compact */}
-            <div className="text-center mb-2">
-              <h4 className="font-bold text-white mb-1 text-xs">Contact Us</h4>
-              <div className="text-xs text-gray-300 space-y-0.5">
-                <div>📍 Near Poshak Mall, Pilerane, Bardez, Goa, 403521</div>
-                <div>📞 +91 8010357955 / 9022362693</div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Desktop Layout */}
-          <div className="hidden md:flex md:flex-row justify-between gap-8">
-            <div className="flex-1 min-w-[220px] mb-8 lg:mb-0">
-              <div className="flex flex-col sm:flex-row items-center mb-4">
-                <img
-                  src="/images/logo2.png"
-                  alt="Namaskaram Bharat"
-                  width={80}
-                  height={80}
-                  className="h-16 sm:h-20 md:h-28 lg:h-32 mr-3 mb-2 sm:mb-0"
-                  loading="eager"
-                  decoding="async"
-                  style={{ objectFit: "contain" }}
-                />
-                <span className="text-xl sm:text-2xl font-bold text-center sm:text-left">
-                  <span className="text-orange-400">नमस्कारम </span>
-                  <span className="text-blue-900">Bharat</span>
-                </span>
-              </div>
-              <p className="text-sm text-center sm:text-left">
-                Your gateway to unforgettable experiences in the paradise of Goa. We offer everything you need for a perfect vacation.
-              </p>
-            </div>
+      <Footer />
 
-            <div className="flex-[2] grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 min-w-[220px]">
-              <div>
-                <h4 className="font-bold mb-3 text-center sm:text-left">Quick Links</h4>
-                <ul className="space-y-2 text-sm text-center sm:text-left">
-                  <li><a href="#" className="hover:text-orange-300 transition-colors">Tour Package</a></li>
-                  <li><a href="#" className="hover:text-orange-300 transition-colors">Hotel Stays</a></li>
-                  <li><a href="#" className="hover:text-orange-300 transition-colors">Rented Villas</a></li>
-                  <li><a href="#" className="hover:text-orange-300 transition-colors">Cars & Bikes</a></li>
-                  <li><a href="#" className="hover:text-orange-300 transition-colors">About us</a></li>
-                  <li><a href="#" className="hover:text-orange-300 transition-colors">Blog</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold mb-3 text-center sm:text-left">Important Links</h4>
-                <ul className="space-y-2 text-sm text-center sm:text-left">
-                  <li><a href="#" onClick={() => setShowContactModal(true)} className="hover:text-orange-300 transition-colors">Contact Us</a></li>
-                  <li><a href="#" className="hover:text-orange-300 transition-colors">Privacy Policy</a></li>
-                  <li><a href="#" className="hover:text-orange-300 transition-colors">Terms & Condition</a></li>
-                  <li><a href="#" className="hover:text-orange-300 transition-colors">Return & Refund</a></li>
-                </ul>
-              </div>
-            </div>
 
-            <div className="flex-1 min-w-[220px] text-sm text-center lg:text-left">
-              <h4 className="font-bold mb-3">Contact Us</h4>
-              <p className="mb-2">📍 Near Poshak Mall, Pilerane, Bardez, Goa, 403521</p>
-              <p>📞 +91 8010357955 / 9022362693</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-700 mt-2 md:mt-8 pt-1 md:pt-4 text-center text-gray-400 text-xs md:text-sm">
-          &copy; {new Date().getFullYear()} Namaskaram Bharat. All rights reserved.
-        </div>
-
-        <ContactModal open={showContactModal} onClose={() => setShowContactModal(false)} />
-      </footer>
     </div>
   );
 }

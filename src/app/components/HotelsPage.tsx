@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ContactModal from './ContactModal';
 import { useRouter } from 'next/navigation';
+import Footer from './Footer';
 
 // Type definitions
 interface RoomType {
@@ -36,6 +37,7 @@ interface Hotel {
 
 interface HotelsPageProps {
   filterHotelName?: string;
+  filterType?: string | null;
 }
 
 const placeholderImages = [
@@ -49,7 +51,7 @@ function getRandomImage() {
   return placeholderImages[Math.floor(Math.random() * placeholderImages.length)];
 }
 
-const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
+const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName, filterType }) => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
   const [showContactModal, setShowContactModal] = useState(false);
@@ -72,12 +74,26 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
     }
   }, [selectedHotel, handleKeyDown]);
 
-  const filteredHotels = filterHotelName
-    ? hotels.filter(hotel => hotel.name.toLowerCase() === filterHotelName.toLowerCase())
-    : hotels;
+  const filteredHotels = (() => {
+    if (filterHotelName) {
+      return hotels.filter(hotel => hotel.name.toLowerCase() === filterHotelName.toLowerCase());
+    }
+    
+    if (filterType === 'luxury') {
+      // Show only Hitai Beach Villa, Acron, and Happymoon
+      return hotels.filter(hotel => 
+        hotel.name === "Hitai Beach Villa" || 
+        hotel.name === "Acron Seawinds Baga-Arpora" || 
+        hotel.name === "Happy Moon Boutique Villa"
+      );
+    }
+    
+    // Default: show all hotels
+    return hotels;
+  })();
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen">
       <div className="py-8 px-2 sm:px-4">
         {/* Beautiful Back Button */}
         <div className="max-w-7xl mx-auto mb-8">
@@ -113,7 +129,9 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
       </div>
       
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 text-teal-900">
-        Our Hotels & Villas
+        {filterType === 'hotels' ? 'Hotels & Villas' : 
+         filterType === 'luxury' ? 'Luxury Villas' : 
+         'Our Hotels & Villas'}
       </h1>
       
       <div className="w-full px-4 max-w-7xl mx-auto">
@@ -126,7 +144,10 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
              onClick={() => setSelectedHotel(hotel)}
            >
                          <img
-               src={hotel.name === "Japs Villa" ? "/images/Hotels pics/Japs Villa/japsCard.jpeg" : getRandomImage()}
+               src={hotel.name === "Japs Villa" ? "/images/Hotels pics/Japs Villa/japsCard.jpeg" : 
+                    hotel.name === "Acron Seawinds Baga-Arpora" ? "/images/Hotels pics/Acron/acronEntry.jpeg" :
+                    hotel.name === "Happy Moon Boutique Villa" ? "/images/Hotels pics/Happymoon/happymoonFront.jpeg" :
+                    getRandomImage()}
                alt={hotel.name}
                className="w-full h-48 sm:h-52 md:h-56 object-cover rounded-t-2xl"
              />
@@ -206,14 +227,40 @@ const HotelsPage: React.FC<HotelsPageProps> = ({ filterHotelName }) => {
                       dots={true}
                       arrows={true}
                       infinite={true}
-                      speed={500}
+                      speed={300}
                       slidesToShow={1}
                       slidesToScroll={1}
                       autoplay={true}
-                      autoplaySpeed={3000}
+                      autoplaySpeed={1500}
                       pauseOnHover={true}
                     >
-                      {selectedHotel.images && selectedHotel.images.length > 0
+                      {selectedHotel.name === "Happy Moon Boutique Villa" 
+                        ? ["happymoonFront.jpeg", "happymoo nBackview.jpeg", "happymoonBedroom.jpeg", "happymoonSeating.jpeg", "happymoonGraden.jpeg", "happymoonSwimpool.jpeg"].map((img, i) => (
+                            <div key={i}>
+                              <img
+                                src={`/images/Hotels pics/Happymoon/${img}`}
+                                alt={`Happy Moon Boutique Villa - ${img}`}
+                                className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover rounded-xl shadow-md"
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).src = getRandomImage();
+                                }}
+                              />
+                            </div>
+                          ))
+                        : selectedHotel.name === "Acron Seawinds Baga-Arpora"
+                        ? ["acronSwimPool.jpeg", "acronBedroom.jpeg", "acronHall1.jpeg", "acronBedroom2.jpeg", "acronGym.jpeg"].map((img, i) => (
+                            <div key={i}>
+                              <img
+                                src={`/images/Hotels pics/Acron/${img}`}
+                                alt={`Acron Seawinds Baga-Arpora - ${img}`}
+                                className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover rounded-xl shadow-md"
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).src = getRandomImage();
+                                }}
+                              />
+                            </div>
+                          ))
+                        : selectedHotel.images && selectedHotel.images.length > 0
                         ? selectedHotel.images.map((img, i) => (
                             <div key={i}>
                               <img

@@ -39,14 +39,14 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
     <>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-[99999]"
+        className="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-[999999]"
         onClick={onClose}
       />
       
       {/* Modal Content */}
-      <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 pointer-events-none">
+      <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 pointer-events-none">
         <div 
-          className="bg-white rounded-2xl p-6 sm:p-8 w-[90%] max-w-md shadow-2xl text-center relative pointer-events-auto"
+          className="bg-white rounded-2xl p-6 sm:p-8 w-[90%] max-w-md shadow-2xl text-center relative pointer-events-auto z-[999999]"
           onClick={(e) => e.stopPropagation()}
           data-modal
           tabIndex={-1}
@@ -59,6 +59,10 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
             ×
           </button>
           <h2 className="text-2xl sm:text-3xl font-bold text-teal-600 mb-6">Contact Us</h2>
+          <div className="flex items-center justify-center gap-3 mb-4 text-base sm:text-lg text-slate-700">
+            <span className="text-xl sm:text-2xl">📍</span>
+            <span>Bliss Home Lane no 2, Karmabhumilohegaon, Pune 411047</span>
+          </div>
           <div className="flex items-center justify-center gap-3 mb-4 text-base sm:text-lg text-slate-700">
             <span className="text-xl sm:text-2xl">📞</span>
             <span>+91 8010357955 / 9022362693</span>

@@ -106,7 +106,7 @@
   },
   {
     "title": "Dudhsagar Waterfall",
-    "img": "/images/dudhsagar.png",
+    "img": "/images/travel3.jpg",
     "price": "₹1700",
     "time": "06:30 AM to 05:00 PM",
     "tour_detail": [
@@ -149,7 +149,7 @@
   },
   {
     "title": "South Goa Tour",
-    "img": "/images/southgoa.png",
+    "img": "/images/backgroundImages/southgoatour.jpeg",
     "price": "₹499 per person",
     "time": "10:00 AM to 07:00 PM",
     "transport": "AC bus (40 seater)",
