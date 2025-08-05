@@ -304,7 +304,17 @@
           "Gardening"
         ]
       },
-      "images": []
+      "images": ["acronSeawindsBagaArpora.jpeg",
+      "acronBalcony.jpeg",
+      "acronGym.jpeg",
+      "acronSwimPool.jpeg",
+      "acronEnrty.jpeg",
+      "acronBedroom.jpeg",
+      "acronBedroom2.jpeg",
+      "acronHall.jpeg",
+      "acronSwimPool.jpeg",
+      "acronSwimPool2.jpeg"
+      ]
     },
     {
       "name": "Happy Moon Boutique Villa",
@@ -370,7 +380,7 @@
         ]
       },
       "images": ["happymoonFront.jpeg",
-      "happymoo nBackview.jpeg",
+      "happymoonnBackview.jpeg",
       "happymoonBedroom.jpeg",
       "happymoonBedroom2.jpeg",
       "happymoonSeating.jpeg",

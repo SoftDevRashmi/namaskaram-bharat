@@ -45,6 +45,8 @@ export default function About() {
               Start Your Journey
             </a>
           </div>
+          
+
         </div>
         <Footer />
       </div>
